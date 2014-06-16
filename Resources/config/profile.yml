@@ -1,0 +1,11 @@
+parameters:
+    xidea_user.controller.profile.class: Xidea\Bundle\UserBundle\Controller\User\ProfileController
+
+services:
+    xidea_user.controller.profile:
+        class: %xidea_user.controller.profile.class%
+        arguments:
+            - @security.context
+            - @event_dispatcher
+            - @templating
+            - @translator

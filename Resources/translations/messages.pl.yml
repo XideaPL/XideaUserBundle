@@ -1,0 +1,37 @@
+user:
+    label: Użytkownik|Użytkownicy
+    username: Login
+    password: Hasło
+    email: E-mail
+    createdAt: Założono
+    updatedAt: Zmodyfikowano
+
+user_profile:
+    title: Profil użytkownika %username%
+    route:
+        name: Profil
+    user_panel:
+        title: Dane użytkownika
+    actions:
+        label: Akcje
+        
+user_login:
+    title: Logowanie do systemu
+    route:
+        name: Zaloguj
+        
+user_logout:
+    route:
+      name: Wyloguj
+    
+user_registration:
+    title: Rejestracja
+    route:
+      name: Zarejestruj się
+
+user_change_password:
+    title: Zmiana hasła
+    route:
+      name: Zmiana hasła
+    
+      

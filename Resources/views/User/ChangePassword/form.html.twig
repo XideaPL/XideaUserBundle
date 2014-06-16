@@ -1,0 +1,32 @@
+{% form_theme form with '::fields.html.twig' %}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        {{ 'user_change_password.title'|trans({}, 'form') }}
+    </div>
+    <!-- /.panel-heading -->
+    <div class="panel-body">
+        {{ form_start(form) }}
+            <div class="form-errors">
+                {{ form_errors(form) }}
+                {#{{ form_errors(form.captcha) }}#}
+            </div>
+            {% for field in form.plainPassword %}
+                <div class="form-group">
+                    {{ form_label(field, null, {'label_attr': {'class': 'sr-only'}}) }}
+                    <div class="controls">
+                        {{ form_widget(field, { 'attr': {'class': 'form-control', 'placeholder': field.vars.label}}) }}
+                        {{ form_errors(field) }}
+                    </div>
+                </div>
+            {% endfor %}
+            <p class="text-right">
+                <input type="submit" value="{{ 'user_change_password.submit'|trans({}, 'form') }}" class="btn btn-primary" />
+            </p>
+            <p class="sr-only">
+                {{ 'form.requiredFields'|trans({}, 'form')|raw }}
+            </p>
+        {{ form_end(form) }}
+    </div>
+    <!-- /.panel-body -->
+</div>
+<!-- /.panel -->

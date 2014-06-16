@@ -1,0 +1,10 @@
+parameters:
+  xidea_user.twig.extension.change_password.class: Xidea\Bundle\UserBundle\Twig\Extension\ChangePasswordExtension
+
+services:
+  xidea_user.twig.extension.change_password:
+      class: %xidea_user.twig.extension.change_password.class%
+      arguments:
+        - @service_container
+      tags:
+          - { name: twig.extension }

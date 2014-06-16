@@ -1,0 +1,8 @@
+parameters:
+    xidea_user.controller.security.class: Xidea\Bundle\UserBundle\Controller\SecurityController
+
+services:
+    xidea_user.controller.security:
+        class: %xidea_user.controller.security.class%
+        arguments:
+            - @templating

@@ -1,0 +1,8 @@
+"Bad credentials": "Nieprawidłowe dane"
+"The presented password is invalid.": "Podane hasło jest nieprawidłowe"
+"The presented password cannot be empty.": "Hasło nie może być puste"
+
+user:
+    notFound: Nie znaleziono użytkownika.
+    
+      

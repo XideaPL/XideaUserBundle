@@ -1,0 +1,13 @@
+user:
+  username:
+    notBlank: Proszę podać nazwę użytkownika
+    notUnique: Podana nazwa użytkownika istnieje już w systemie
+    length:
+      min: Nazwa użytkownika musi mieć conajmniej {{ limit }} liter
+  email:
+    notBlank: Proszę podać adres e-mail
+    notUnique: Podany adres e-mail istnieje już w systemie
+    email: Proszę podać poprawny adres e-mail
+  password:
+    notBlank: Proszę podać hasło
+    mismatch: Podane hasła nie pasują do siebie

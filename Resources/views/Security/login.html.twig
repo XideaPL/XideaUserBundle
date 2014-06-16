@@ -1,0 +1,21 @@
+{% extends 'XideaUserBundle::base.html.twig' %}
+{% block xidea_user_header_title %}
+    {{ 'user_login.title'|trans }}
+{% endblock %}
+{% block xidea_user_main %}
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    {{ 'user_login.title'|trans }}
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    {{ include('XideaUserBundle:Security:login_form.html.twig') }}
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+    </div>
+{% endblock %}

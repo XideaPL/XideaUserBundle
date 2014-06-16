@@ -1,0 +1,25 @@
+<form action="{{ path('_login_check') }}" method="post" role="form">
+    <fieldset>
+        {% if error %}
+            <div>{{ error.message|trans({}, 'exceptions') }}</div>
+        {% endif %}
+        <div class="form-group">
+            <label class="sr-only" for="username">{{ 'user_login.username'|trans({}, 'form') }}:</label>
+            <div class="controls">
+                <input id="username" class="form-control" name="_username" type="text" value="{{ last_username }}" placeholder="{{ 'user_login.username'|trans({}, 'form') }}" autofocus/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="sr-only" for="password">{{ 'user_login.password'|trans({}, 'form') }}:</label>
+            <div class="controls">
+                <input id="password" class="form-control" name="_password" type="password" placeholder="{{ 'user_login.password'|trans({}, 'form') }}" />
+            </div>
+        </div>
+        <div class="checkbox">
+            <label>
+                <input name="remember" type="checkbox" value="Remember Me">{{ 'user_login.remember_me'|trans({}, 'form') }}
+            </label>
+        </div>
+        <button class="btn btn-lg btn-success btn-block" type="submit">{{ 'user_login.submit'|trans({}, 'form') }}</button>
+    </fieldset>
+</form>

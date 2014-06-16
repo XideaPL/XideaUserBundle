@@ -1,0 +1,21 @@
+user:
+    username: Login
+    email: E-mail
+    password: Hasło
+    password_confirmation: Powtórz hasło
+
+user_login:
+    title: Zaloguj się
+    username: Login
+    password: Hasło
+    remember_me: Zapamiętaj mnie
+    submit: Zaloguj
+    
+user_registration:
+    title: Zarejestruj się
+    submit: Zarejestruj
+    
+user_change_password:
+    title: Zmień hasło
+    submit: Zapisz
+      

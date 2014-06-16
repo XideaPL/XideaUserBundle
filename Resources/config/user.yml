@@ -1,0 +1,8 @@
+parameters:
+    xidea_user.user_factory.class: Xidea\Bundle\UserBundle\Model\Factory\UserFactory
+  
+services:
+    xidea_user.user_factory.default:
+        class: %xidea_user.user_factory.class%
+        arguments:
+            - %xidea_user.user.class%

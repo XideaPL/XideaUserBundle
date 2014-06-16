@@ -1,0 +1,16 @@
+parameters:
+    xidea_user.user_loader.class: Xidea\Bundle\UserBundle\Entity\Loader\UserLoader
+    xidea_user.user_manager.class: Xidea\Bundle\UserBundle\Entity\Manager\UserManager
+  
+services:
+    xidea_user.user_loader.default:
+        class: %xidea_user.user_loader.class%
+        arguments:
+            - %xidea_user.user.class%
+            - @doctrine.orm.entity_manager
+    xidea_user.user_manager.default:
+        class: %xidea_user.user_manager.class%
+        arguments:
+            - @doctrine.orm.entity_manager
+            - @security.encoder_factory
+            - @event_dispatcher
