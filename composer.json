@@ -16,7 +16,7 @@
         "symfony/framework-bundle": "~2.1",
         "symfony/form": "~2.1",
         "symfony/security-bundle": "~2.1",
-        "xideapl/user": "1.0.*@dev"
+        "xideapl/user": "dev-master@dev"
     },
     "require-dev": {
         "twig/twig": "~1.5",
