@@ -10,11 +10,10 @@
 namespace Xidea\Bundle\UserBundle\Entity;
 
 use Xidea\Bundle\UserBundle\Model\AbstractUser as BaseAbstractUser;
-use Xidea\Bundle\UserBundle\Model\UserInterface;
 
 /**
  * @author Artur Pszczółka <a.pszczolka@xidea.pl>
  */
-abstract class AbstractUser extends BaseAbstractUser implements UserInterface
+abstract class AbstractUser extends BaseAbstractUser
 {
 }

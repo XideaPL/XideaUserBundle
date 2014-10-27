@@ -7,15 +7,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Xidea\Bundle\UserBundle\Model\Factory;
+namespace Xidea\Bundle\UserBundle\Entity\Repository;
+
+use Doctrine\ORM\EntityRepository;
 
 /**
  * @author Artur Pszczółka <a.pszczolka@xidea.pl>
  */
-interface UserFactoryInterface
+class UserRepository extends EntityRepository
 {
-    /**
-     * @return \Xidea\Bundle\UserBundle\Model\UserInterface
-     */
-    public function createUser();
 }

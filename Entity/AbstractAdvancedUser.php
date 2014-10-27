@@ -10,12 +10,11 @@
 namespace Xidea\Bundle\UserBundle\Entity;
 
 use Xidea\Bundle\UserBundle\Model\AbstractAdvancedUser as BaseAbstractAdvancedUser;
-use Xidea\Bundle\UserBundle\Model\AdvancedUserInterface;
 
 /**
  * @author Artur Pszczółka <a.pszczolka@xidea.pl>
  */
-abstract class AbstractAdvancedUser extends BaseAbstractAdvancedUser implements AdvancedUserInterface
+abstract class AbstractAdvancedUser extends BaseAbstractAdvancedUser
 {    
     public function prePersist()
     {

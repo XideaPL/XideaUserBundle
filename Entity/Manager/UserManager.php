@@ -9,13 +9,15 @@
 
 namespace Xidea\Bundle\UserBundle\Entity\Manager;
 
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface,
+    Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
+
 use Doctrine\ORM\EntityManager;
-use Xidea\Bundle\UserBundle\Model\Manager\UserManagerInterface;
-use Xidea\Bundle\UserBundle\ModelEvents;
-use Xidea\Bundle\UserBundle\Event\UserEvent;
-use Xidea\Bundle\UserBundle\Model\UserInterface;
+
+use Xidea\Component\User\Model\Manager\UserManagerInterface,
+    Xidea\Component\User\Model\UserInterface;
+
+use Xidea\Bundle\UserBundle\UserEvents;
 
 /**
  * @author Artur Pszczółka <a.pszczolka@xidea.pl>
@@ -91,5 +93,4 @@ class UserManager implements UserManagerInterface
     {
         $this->entityManager->remove($user);
     }
-
 }

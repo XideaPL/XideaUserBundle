@@ -9,141 +9,19 @@
 
 namespace Xidea\Bundle\UserBundle\Model;
 
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
+
+use Xidea\Component\User\Model\AbstractAdvancedUser as BaseAbstractAdvancedUser;
 /**
  * @author Artur Pszczółka <a.pszczolka@xidea.pl>
  */
-abstract class AbstractAdvancedUser extends AbstractUser
+abstract class AbstractAdvancedUser extends BaseAbstractAdvancedUser implements AdvancedUserInterface
 {
-    /*
-     * @var string
-     */
-    protected $email;
-
-    /*
-     * @var boolean
-     */
-    protected $isEnabled;
-    
-    /*
-     * @var string
-     */
-    protected $confirmationToken;
-    
-    /*
-     * @var datetime
-     */
-    protected $createdAt;
-    
-    /*
-     * @var datetime
-     */
-    protected $updatedAt;
-    
-    /*
-     * @var datetime
-     */
-    protected $lastLogin;
-
-    public function __construct()
-    {
-        $this->isEnabled = true;
-        parent::__construct();
-    }
-    
     /**
      * @inheritDoc
      */
-    public function setEmail($email)
+    public function eraseCredentials()
     {
-        $this->email = $email;
-    }
-    
-    /**
-     * @inheritDoc
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-    
-    /**
-     * @inheritDoc
-     */
-    public function setIsEnabled($isEnabled)
-    {
-        $this->isEnabled = $isEnabled;
-    }
-    
-    /**
-     * @inheritDoc
-     */
-    public function isEnabled()
-    {
-        return $this->isEnabled;
-    }
-    
-    /**
-     * @inheritDoc
-     */
-    public function setConfirmationToken($confirmationToken)
-    {
-        $this->confirmationToken = $confirmationToken;
-    }
-    
-    /**
-     * @inheritDoc
-     */
-    public function getConfirmationToken()
-    {
-        return $this->confirmationToken;
-    }
-    
-    /**
-     * @inheritDoc
-     */
-    public function setCreatedAt(\DateTime $createdAt = null)
-    {
-        $this->createdAt = $createdAt;
-    }
-    
-    /**
-     * @inheritDoc
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-    
-    /**
-     * @inheritDoc
-     */
-    public function setUpdatedAt(\DateTime $updatedAt = null)
-    {
-        $this->updatedAt = $updatedAt;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
-    }
-    
-    /**
-     * @inheritDoc
-     */
-    public function setLastLogin(\DateTime $lastLogin = null)
-    {
-        $this->lastLogin = $lastLogin;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getLastLogin()
-    {
-        return $this->lastLogin;
     }
     
     /**

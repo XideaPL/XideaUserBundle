@@ -31,7 +31,7 @@ class FormFactory implements FormFactoryInterface
         $this->validationGroups = $validationGroups;
     }
 
-    public function createForm()
+    public function create()
     {
         return $this->formFactory->createNamed($this->name, $this->type, null, array('validation_groups' => $this->validationGroups));
     }

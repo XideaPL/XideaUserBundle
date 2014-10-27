@@ -18,5 +18,5 @@ interface FormFactoryInterface
     /**
      * @return \Symfony\Component\Form\FormInterface
      */
-    public function createForm();
+    public function create();
 }

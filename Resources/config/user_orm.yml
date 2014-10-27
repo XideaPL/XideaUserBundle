@@ -3,11 +3,16 @@ parameters:
     xidea_user.user_manager.class: Xidea\Bundle\UserBundle\Entity\Manager\UserManager
   
 services:
+    xidea_user.user_repository.default:
+        class: %xidea_user.user_repository.default.class%
+        factory_service: doctrine.orm.entity_manager
+        factory_method: getRepository
+        arguments:
+            - %xidea_user.user.class%
     xidea_user.user_loader.default:
         class: %xidea_user.user_loader.class%
         arguments:
-            - %xidea_user.user.class%
-            - @doctrine.orm.entity_manager
+            - @xidea_user.user_repository.default
     xidea_user.user_manager.default:
         class: %xidea_user.user_manager.class%
         arguments:

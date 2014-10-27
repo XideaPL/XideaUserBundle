@@ -9,9 +9,9 @@
 
 namespace Xidea\Bundle\UserBundle\Entity\Loader;
 
-use Doctrine\ORM\EntityManager;
-use Xidea\Bundle\UserBundle\Model\Loader\UserLoaderInterface;
-use Xidea\Bundle\UserBundle\Model\UserInterface;
+use Xidea\Component\User\Loader\UserLoaderInterface;
+
+use Xidea\Bundle\UserBundle\Entity\Repository\UserRepository;
 
 /**
  * @author Artur Pszczółka <a.pszczolka@xidea.pl>
@@ -19,25 +19,18 @@ use Xidea\Bundle\UserBundle\Model\UserInterface;
 class UserLoader implements UserLoaderInterface
 {
     /*
-     * @var string
+     * @var UserRepository
      */
-    protected $class;
-
-    /*
-     * @var EntityManager
-     */
-    protected $entityManager;
+    protected $userRepository;
     
     /**
      * Constructs a user loader.
      *
-     * @param string $class The class
-     * @param EntityManager The entity manager
+     * @param UserRepository The entity manager
      */
-    public function __construct($class, EntityManager $entityManager)
+    public function __construct(UserRepository $userRepository)
     {
-        $this->class = $class;
-        $this->entityManager = $entityManager;
+        $this->userRepository = $userRepository;
     }
 
     /**
@@ -45,7 +38,7 @@ class UserLoader implements UserLoaderInterface
      */
     public function load($id)
     {
-        return $this->getRepository()->find($id);
+        return $this->userRepository->find($id);
     }
 
     /**
@@ -53,21 +46,14 @@ class UserLoader implements UserLoaderInterface
      */
     public function loadAll()
     {
-        return $this->getRepository()->findAll();
+        return $this->userRepository->findAll();
     }
 
     /*
      * {@inheritdoc}
      */
-
     public function loadBy(array $criteria, array $orderBy = array(), $limit = null, $offset = null)
     {
-        return $this->getRepository()->findBy($criteria, $orderBy, $limit, $offset);
+        return $this->userRepository->findBy($criteria, $orderBy, $limit, $offset);
     }
-    
-    protected function getRepository()
-    {
-        return $this->entityManager->getRepository($this->class);
-    }
-
 }
