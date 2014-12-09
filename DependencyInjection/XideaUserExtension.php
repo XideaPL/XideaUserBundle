@@ -38,7 +38,7 @@ class XideaUserExtension extends Extension
         $container->setAlias('xidea_user.template_manager', $config['template_manager']);
         
         if (!empty($config['create'])) {
-            $this->loadRegistration($config['create'], $container, $loader);
+            $this->loadCreate($config['create'], $container, $loader);
         }
         
         if (!empty($config['change_password'])) {
