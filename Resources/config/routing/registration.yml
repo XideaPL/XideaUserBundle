@@ -1,3 +1,0 @@
-xidea_user_register:
-    pattern:  /users/register
-    defaults: { _controller: xidea_user.controller.registration:registerAction }
