@@ -1,0 +1,3 @@
+xidea_user_create:
+    pattern:  /users/create
+    defaults: { _controller: xidea_user.controller.create:createAction }

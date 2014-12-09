@@ -27,31 +27,34 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('user_factory')->defaultValue('xidea_user.user_factory.default')->end()
                 ->scalarNode('user_manager')->defaultValue('xidea_user.user_manager.default')->end()
                 ->scalarNode('user_loader')->defaultValue('xidea_user.user_loader.default')->end()
+                ->scalarNode('url_manager')->end()
+                ->scalarNode('template_manager')->end()
             ->end()
         ;
 
-        $this->addRegistrationSection($rootNode);
-        $this->addChangePasswordSection($rootNode);
+        $this->addCreateSection($rootNode);
+        
+        //$this->addChangePasswordSection($rootNode);
 
         return $treeBuilder;
     }
     
-    private function addRegistrationSection(ArrayNodeDefinition $node)
+    private function addCreateSection(ArrayNodeDefinition $node)
     {
         $node
             ->children()
-                ->arrayNode('registration')
+                ->arrayNode('create')
                     ->addDefaultsIfNotSet()
                     ->canBeUnset()
                     ->children()
                         ->arrayNode('form')
                             ->addDefaultsIfNotSet()
                             ->children()
-                                ->scalarNode('type')->defaultValue('xidea_user_registration')->end()
-                                ->scalarNode('name')->defaultValue('xidea_user_registration_form')->end()
+                                ->scalarNode('type')->defaultValue('xidea_user_create')->end()
+                                ->scalarNode('name')->defaultValue('xidea_user_create_form')->end()
                                 ->arrayNode('validation_groups')
                                     ->prototype('scalar')->end()
-                                    ->defaultValue(array('Registration', 'Default'))
+                                    ->defaultValue(array('Create', 'Default'))
                                 ->end()
                             ->end()
                         ->end()

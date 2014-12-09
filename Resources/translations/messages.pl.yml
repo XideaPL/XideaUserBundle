@@ -24,7 +24,7 @@ user_logout:
     route:
       name: Wyloguj
     
-user_registration:
+user_create:
     title: Rejestracja
     route:
       name: Zarejestruj się

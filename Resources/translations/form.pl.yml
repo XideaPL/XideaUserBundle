@@ -11,7 +11,7 @@ user_login:
     remember_me: Zapamiętaj mnie
     submit: Zaloguj
     
-user_registration:
+user_create:
     title: Zarejestruj się
     submit: Zarejestruj
     

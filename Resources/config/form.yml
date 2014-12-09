@@ -1,0 +1,19 @@
+services:
+    xidea_user.create_form.type:
+        class: Xidea\Bundle\UserBundle\Form\Type\CreateType
+        arguments:
+            - %xidea_user.user.class%
+        tags:
+            - { name: form.type, alias: "xidea_user_create" }
+    xidea_user.create_form.factory:
+        class: Xidea\Bundle\UserBundle\Form\Factory\FormFactory
+        arguments:
+            - @form.factory
+            - %xidea_user.create_form.name%
+            - %xidea_user.create_form.type%
+            - %xidea_user.create_form.validation_groups%
+    xidea_user.create_form.handler:
+        class: Xidea\Bundle\UserBundle\Form\Handler\UserFormHandler
+        arguments:
+            - @xidea_user.create_form.factory
+            - @event_dispatcher

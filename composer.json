@@ -16,6 +16,8 @@
         "symfony/framework-bundle": "~2.1",
         "symfony/form": "~2.1",
         "symfony/security-bundle": "~2.1",
+        "xideapl/url": "dev-master@dev",
+        "xideapl/template": "dev-master@dev",
         "xideapl/user": "dev-master@dev"
     },
     "require-dev": {

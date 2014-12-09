@@ -1,8 +1,18 @@
 parameters:
     xidea_user.user_factory.class: Xidea\Bundle\UserBundle\Model\Factory\UserFactory
+    xidea_user.user_builder.class: Xidea\Component\User\Builder\UserBuilder
+    xidea_user.user_director.class: Xidea\Component\User\Builder\UserDirector
   
 services:
     xidea_user.user_factory.default:
         class: %xidea_user.user_factory.class%
         arguments:
             - %xidea_user.user.class%
+    xidea_user.user_builder.default:
+        class: %xidea_user.user_builder.class%
+        arguments:
+            - @xidea_user.user_factory
+    xidea_user.user_director.default:
+        class: %xidea_user.user_director.class%
+        arguments:
+            - @xidea_user.user_builder

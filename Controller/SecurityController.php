@@ -2,20 +2,21 @@
 
 namespace Xidea\Bundle\UserBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
-use Symfony\Component\Security\Core\SecurityContext;
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\SecurityContext,
+    Symfony\Component\HttpFoundation\Request;
+
+use Xidea\Component\Template\Manager\TemplateManagerInterface;
 
 class SecurityController
 {
     /*
-     * @var EngineInterface
+     * @var TemplateManagerInterface
      */
-    protected $templating;
+    protected $templateManager;
 
-    public function __construct(EngineInterface $templating)
+    public function __construct(TemplateManagerInterface $templateManager)
     {
-        $this->templating = $templating;
+        $this->templateManager = $templateManager;
     }
     
     public function loginAction(Request $request)
@@ -32,8 +33,8 @@ class SecurityController
             $session->remove(SecurityContext::AUTHENTICATION_ERROR);
         }
 
-        return $this->templating->renderResponse(
-            'XideaUserBundle:Security:login.html.twig',
+        return $this->templateManager->render(
+            'user_login',
             array(
                 // last username entered by the user
                 'last_username' => $session->get(SecurityContext::LAST_USERNAME),
@@ -44,8 +45,8 @@ class SecurityController
     
     public function loginFormAction()
     {
-        return $this->templating->renderResponse(
-            'XideaUserBundle:Security:login_form.html.twig',
+        return $this->templateManager->render(
+            'user_login_form',
             array(
                 'last_username' => '',
                 'error'         => '',
