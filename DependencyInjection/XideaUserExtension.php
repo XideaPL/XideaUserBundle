@@ -40,16 +40,10 @@ class XideaUserExtension extends Extension
         if (!empty($config['create'])) {
             $this->loadCreate($config['create'], $container, $loader);
         }
-        
-        if (!empty($config['change_password'])) {
-            $this->loadChangePassword($config['change_password'], $container, $loader);
-        }
     }
     
     private function loadCreate(array $config, ContainerBuilder $container, Loader\YamlFileLoader $loader)
     {
-        $loader->load('create.yml');
-        
         $container->setParameter('xidea_user.create.form.type', $config['form']['type']);
         $container->setParameter('xidea_user.create.form.name', $config['form']['name']);
         $container->setParameter('xidea_user.create.form.validation_groups', $config['form']['validation_groups']);
