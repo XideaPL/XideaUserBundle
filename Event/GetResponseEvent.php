@@ -9,9 +9,9 @@
 
 namespace Xidea\Bundle\UserBundle\Event;
 
-use Symfony\Component\EventDispatcher\Event;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\EventDispatcher\Event,
+    Symfony\Component\HttpFoundation\Request,
+    Symfony\Component\HttpFoundation\Response;
 
 /**
  *

@@ -25,10 +25,10 @@ class Configuration implements ConfigurationInterface
             ->children()
                 ->scalarNode('user_class')->isRequired()->cannotBeEmpty()->end()
                 ->scalarNode('user_factory')->defaultValue('xidea_user.user_factory.default')->end()
+                ->scalarNode('user_builder')->defaultValue('xidea_user.user_builder.default')->end()
+                ->scalarNode('user_director')->defaultValue('xidea_user.user_director.default')->end()
                 ->scalarNode('user_manager')->defaultValue('xidea_user.user_manager.default')->end()
                 ->scalarNode('user_loader')->defaultValue('xidea_user.user_loader.default')->end()
-                ->scalarNode('url_manager')->end()
-                ->scalarNode('template_manager')->end()
             ->end()
         ;
 

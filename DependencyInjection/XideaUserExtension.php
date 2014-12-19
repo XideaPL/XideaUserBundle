@@ -32,10 +32,10 @@ class XideaUserExtension extends Extension
 
         $container->setParameter('xidea_user.user.class', $config['user_class']);
         $container->setAlias('xidea_user.user_factory', $config['user_factory']);
+        $container->setAlias('xidea_user.user_builder', $config['user_builder']);
+        $container->setAlias('xidea_user.user_director', $config['user_director']);
         $container->setAlias('xidea_user.user_manager', $config['user_manager']);
         $container->setAlias('xidea_user.user_loader', $config['user_loader']);
-        $container->setAlias('xidea_user.url_manager', $config['url_manager']);
-        $container->setAlias('xidea_user.template_manager', $config['template_manager']);
         
         if (!empty($config['create'])) {
             $this->loadCreate($config['create'], $container, $loader);
@@ -44,9 +44,9 @@ class XideaUserExtension extends Extension
     
     private function loadCreate(array $config, ContainerBuilder $container, Loader\YamlFileLoader $loader)
     {
-        $container->setParameter('xidea_user.create.form.type', $config['form']['type']);
-        $container->setParameter('xidea_user.create.form.name', $config['form']['name']);
-        $container->setParameter('xidea_user.create.form.validation_groups', $config['form']['validation_groups']);
+        $container->setParameter('xidea_user.user_create.form.type', $config['form']['type']);
+        $container->setParameter('xidea_user.user_create.form.name', $config['form']['name']);
+        $container->setParameter('xidea_user.user_create.form.validation_groups', $config['form']['validation_groups']);
     }
     
     private function loadChangePassword(array $config, ContainerBuilder $container, Loader\YamlFileLoader $loader)

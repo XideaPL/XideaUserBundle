@@ -1,0 +1,19 @@
+Xidea\Bundle\UserBundle\Model\AbstractUser:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+            fields: username
+            message: "user.username.notUnique"
+#            groups: [registration]
+#        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+#            fields: email
+#            message: "user.email.notUnique"
+#            groups: [registration]
+    properties:
+        username:
+            - NotBlank: { message: "user.username.notBlank", groups: [] }
+            - Length: { min: 5, minMessage: "user.username.length.min", max: 64, maxMessage: "user.username.length.max", groups: [] }
+#        email:
+#            - NotBlank: { message: "user.email.notBlank", groups: [registration] }
+#            - Email: { message: "user.email.email", groups: [registration] }
+        plainPassword:
+            - NotBlank: { message: "user.password.notBlank", groups: [] }

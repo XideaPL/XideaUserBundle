@@ -7,11 +7,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Xidea\Bundle\UserBundle\Controller\User;
+namespace Xidea\Bundle\UserBundle\Tests\Fixtures\Entity;
+
+use Xidea\Bundle\UserBundle\Entity\AbstractUser;
 
 /**
  * @author Artur Pszczółka <a.pszczolka@xidea.pl>
  */
-class CreateController extends AbstractCreateController
+class User extends AbstractUser
 {
 }

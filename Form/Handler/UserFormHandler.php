@@ -61,7 +61,7 @@ class UserFormHandler implements UserFormHandlerInterface
      */
     public function createForm()
     {
-        return $this->formFactory->createForm();
+        return $this->formFactory->create();
     }
 
     /**

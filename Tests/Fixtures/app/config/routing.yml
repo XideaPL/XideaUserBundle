@@ -1,0 +1,7 @@
+xidea_user_security:
+    resource: "@XideaUserBundle/Resources/config/routing/security.yml"
+    prefix:   /
+    
+xidea_user:
+    resource: "@XideaUserBundle/Resources/config/routing/user.yml"
+    prefix:   /app

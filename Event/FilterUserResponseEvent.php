@@ -9,9 +9,10 @@
 
 namespace Xidea\Bundle\UserBundle\Event;
 
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Xidea\Bundle\UserBundle\Model\UserInterface;
+use Symfony\Component\HttpFoundation\Request,
+    Symfony\Component\HttpFoundation\Response;
+
+use Xidea\Component\User\Model\UserInterface;
 
 /**
  *

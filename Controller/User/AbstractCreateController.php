@@ -11,12 +11,12 @@ namespace Xidea\Bundle\UserBundle\Controller\User;
 
 use Symfony\Component\HttpFoundation\Request,
     Symfony\Component\HttpFoundation\RedirectResponse,
-    Symfony\Component\EventDispatcher\EventDispatcherInterface;
+    Symfony\Component\EventDispatcher\EventDispatcherInterface,
+    Symfony\Bundle\FrameworkBundle\Templating\EngineInterface,
+    Symfony\Component\Routing\RouterInterface;
 
 use Xidea\Component\User\Builder\UserDirectorInterface,
     Xidea\Component\User\Manager\UserManagerInterface,
-    Xidea\Component\Url\Manager\UrlManagerInterface,
-    Xidea\Component\Template\Manager\TemplateManagerInterface,
     Xidea\Bundle\UserBundle\Form\Handler\UserFormHandlerInterface,
     Xidea\Bundle\UserBundle\UserEvents,
     Xidea\Bundle\UserBundle\Event\GetResponseEvent,
@@ -49,23 +49,23 @@ abstract class AbstractCreateController
     protected $eventDispatcher;
     
     /*
-     * @var UrlManagerInterface
+     * @var RouterInterface
      */
-    protected $urlManager;
+    protected $router;
 
     /*
-     * @var TemplateManagerInterface
+     * @var EngineInterface
      */
-    protected $templateManager;
+    protected $templating;
 
-    public function __construct(UserDirectorInterface $userDirector, UserManagerInterface $userManager, UserFormHandlerInterface $formHandler, EventDispatcherInterface $eventDispatcher, UrlManagerInterface $urlManager, TemplateManagerInterface $templateManager)
+    public function __construct(UserDirectorInterface $userDirector, UserManagerInterface $userManager, UserFormHandlerInterface $formHandler, EventDispatcherInterface $eventDispatcher, RouterInterface $router, EngineInterface $templating)
     {
         $this->userDirector = $userDirector;
         $this->userManager = $userManager;
-        $this->eventDispatcher = $eventDispatcher;
         $this->formHandler = $formHandler;
-        $this->urlManager = $urlManager;
-        $this->templateManager = $templateManager;
+        $this->eventDispatcher = $eventDispatcher;
+        $this->router = $router;
+        $this->templating = $templating;
     }
 
     public function createAction(Request $request)
@@ -94,11 +94,11 @@ abstract class AbstractCreateController
                 $this->eventDispatcher->dispatch(UserEvents::CREATE_SUCCESS, $event);
 
                 if (null === $response = $event->getResponse()) {
-                    $url = $this->urlManager->generate('user_view', array(
+                    $url = $this->router->generate('xidea_user_view', array(
                         'id' => $user->getId()
                     ));
                     
-                    $response = $this->templateManager->redirect($url);
+                    $response = new RedirectResponse($url);
                 }
 
                 $this->eventDispatcher->dispatch(UserEvents::CREATE_COMPLETED, new FilterUserResponseEvent($user, $request, $response));
@@ -107,7 +107,7 @@ abstract class AbstractCreateController
             }
         }
 
-        return $this->templateManager->render('user_create', array(
+        return $this->templating->render('XideaUserBundle:User/Create:create.html.twig', array(
             'form' => $form->createView()
         ));
     }
@@ -116,7 +116,7 @@ abstract class AbstractCreateController
     {
         $form = $this->formHandler->buildForm();
 
-        return $this->templateManager->render('user_create_form', array(
+        return $this->templating->render('XideaUserBundle:User/Create:create_form.html.twig', array(
             'form' => $form->createView()
         ));
     }

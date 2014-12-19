@@ -37,9 +37,9 @@ class CreateType extends AbstractType
                 ->add('username', null, array(
                     'label' => 'user_create.form.username'
                 ))
-                ->add('email', 'email', array(
-                    'label' => 'user_create.form.email'
-                ))
+//                ->add('email', 'email', array(
+//                    'label' => 'user_create.form.email'
+//                ))
                 ->add('plainPassword', 'repeated', array(
                     'type' => 'password',
                     'first_options' => array('label' => 'user_create.form.password'),

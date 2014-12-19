@@ -1,5 +1,9 @@
+nbproject/
 /vendor/
+
+Tests/bootstrap.php
+Tests/Fixtures/app/cache
+Tests/Fixtures/app/logs
 composer.phar
 composer.lock
 phpunit.xml
-Tests/bootstrap.php

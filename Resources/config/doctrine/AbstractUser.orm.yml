@@ -9,9 +9,9 @@ Xidea\Bundle\UserBundle\Entity\AbstractUser:
             type: string
             length: 255
             unique: true
-        password:
-            type: string
-            length: 255
         salt:
             type: string
             length: 32
+        password:
+            type: string
+            length: 255

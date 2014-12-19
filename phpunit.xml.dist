@@ -7,6 +7,11 @@ file that was distributed with this source code.
 -->
 
 <phpunit colors="true" bootstrap="Tests/bootstrap.php">
+    <!--
+    <php>
+        <server name="KERNEL_DIR" value="./Tests/Fixtures/app" />
+    </php>
+    -->
     <testsuites>
         <testsuite name="XideaUserBundle for the Symfony Framework">
             <directory>./Tests</directory>

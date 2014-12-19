@@ -1,5 +1,5 @@
 parameters:
-    xidea_user.user_factory.class: Xidea\Bundle\UserBundle\Model\Factory\UserFactory
+    xidea_user.user_factory.class: Xidea\Component\User\Factory\UserFactory
     xidea_user.user_builder.class: Xidea\Component\User\Builder\UserBuilder
     xidea_user.user_director.class: Xidea\Component\User\Builder\UserDirector
   

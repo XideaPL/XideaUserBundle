@@ -1,4 +1,4 @@
-{% extends 'XideaUserBundle::base.html.twig' %}
+{% extends 'XideaUserBundle::main.html.twig' %}
 {% block xidea_user_header_title %}
     {{ 'user_login.title'|trans }}
 {% endblock %}
@@ -11,7 +11,7 @@
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
-                    {{ include('XideaUserBundle:Security:login_form.html.twig') }}
+                   {{ include('XideaUserBundle:Security:login_form.html.twig') }}
                 </div>
                 <!-- /.panel-body -->
             </div>

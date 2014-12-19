@@ -1,0 +1,61 @@
+{% block choice_widget_expanded %}
+{% spaceless %}
+    <div {{ block('widget_container_attributes') }}>
+    {% for child in form %}
+        {{ form_widget(child) }}
+    {% endfor %}
+    </div>
+{% endspaceless %}
+{% endblock choice_widget_expanded %}
+
+{% block checkbox_widget %}
+{% spaceless %}
+    <label  for="{{ id }}" class="checkbox {% if checked %}checked{% endif %}" ><span class="icons"><span class="first-icon fui-checkbox-unchecked"></span><span class="second-icon fui-checkbox-checked"></span></span><input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />{{ label|trans({}, translation_domain) }}</label>
+{% endspaceless %}
+{% endblock checkbox_widget %}
+    
+{% block radio_widget %}
+{% spaceless %}
+    <div class="radio">
+        <label for="{{ id }}"><input type="radio" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} /> {{ label|trans({}, translation_domain) }}</label>
+    </div>
+{% endspaceless %}
+{% endblock radio_widget %}
+
+{% block button_widget %}
+{% spaceless %}
+    {% if label is empty %}
+        {% set label = name|humanize %}
+    {% endif %}
+    <button type="{{ type|default('button') }}" {{ block('button_attributes') }}>{{ label|trans({}, translation_domain)|raw }}</button>
+{% endspaceless %}
+{% endblock button_widget %}
+
+{% block form_row %}
+{% spaceless %}
+<div class="form-group">
+    {{ form_label(form, label, { 'label_attr': { 'class': 'control-label' } }) }}
+    {{ form_widget(form) }}
+    {{ form_errors(form) }}
+</div>
+{% endspaceless %}
+{% endblock form_row %}
+    
+{% block form_errors %}
+{% spaceless %}
+    {% if errors|length > 0 %}
+    <ul class="error-message">
+        {% for error in errors %}
+            <li>{{ error.message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+{% endspaceless %}
+{% endblock form_errors %}
+
+{% block captcha_widget %}
+{% spaceless %}
+    {{ form_widget(form) }}
+    <img src="{{ captcha_code }}" title="captcha" width="{{ captcha_width }}" height="{{ captcha_height }}" />
+{% endspaceless %}
+{% endblock %}

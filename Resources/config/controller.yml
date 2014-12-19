@@ -1,5 +1,5 @@
 parameters:
-    xidea_user.controller.create.class: Xidea\Bundle\UserBundle\Controller\Ticket\CreateController
+    xidea_user.controller.create.class: Xidea\Bundle\UserBundle\Controller\User\CreateController
   
 services:
     xidea_user.controller.create:
@@ -7,7 +7,7 @@ services:
         arguments:
             - @xidea_user.user_director
             - @xidea_user.user_manager
-            - @xidea_user.create_form.handler
+            - @xidea_user.user_create.form.handler
             - @event_dispatcher
-            - @xidea_user.url_manager
-            - @xidea_user.template_manager
+            - @router
+            - @templating

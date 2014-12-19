@@ -25,9 +25,9 @@ user_logout:
       name: Wyloguj
     
 user_create:
-    title: Rejestracja
+    title: Nowy użytkownik
     route:
-      name: Zarejestruj się
+      name: Dodaj
 
 user_change_password:
     title: Zmiana hasła

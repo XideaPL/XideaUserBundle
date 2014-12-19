@@ -14,10 +14,11 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface,
 
 use Doctrine\ORM\EntityManager;
 
-use Xidea\Component\User\Model\Manager\UserManagerInterface,
+use Xidea\Component\User\Manager\UserManagerInterface,
     Xidea\Component\User\Model\UserInterface;
 
-use Xidea\Bundle\UserBundle\UserEvents;
+use Xidea\Bundle\UserBundle\UserEvents,
+    Xidea\Bundle\UserBundle\Event\UserEvent;
 
 /**
  * @author Artur Pszczółka <a.pszczolka@xidea.pl>
