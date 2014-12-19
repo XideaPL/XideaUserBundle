@@ -56,4 +56,12 @@ class UserLoader implements UserLoaderInterface
     {
         return $this->userRepository->findBy($criteria, $orderBy, $limit, $offset);
     }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function loadOneByUsername($username)
+    {
+        return $this->userRepository->findOneByUsername($username);
+    }
 }
