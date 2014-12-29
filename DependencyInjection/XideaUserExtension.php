@@ -30,32 +30,27 @@ class XideaUserExtension extends Extension
         $loader->load('controller.yml');
         $loader->load('twig.yml');
 
-        $container->setParameter('xidea_user.user.class', $config['user_class']);
-        $container->setAlias('xidea_user.user_factory', $config['user_factory']);
-        $container->setAlias('xidea_user.user_builder', $config['user_builder']);
-        $container->setAlias('xidea_user.user_director', $config['user_director']);
-        $container->setAlias('xidea_user.user_manager', $config['user_manager']);
-        $container->setAlias('xidea_user.user_loader', $config['user_loader']);
+        $this->loadUserSection($config['user'], $container, $loader);
+    }
+    
+    private function loadUserSection(array $config, ContainerBuilder $container, Loader\YamlFileLoader $loader)
+    {
+        $container->setParameter('xidea_user.user.class', $config['class']);
+        $container->setAlias('xidea_user.user_factory', $config['factory']);
+        $container->setAlias('xidea_user.user_builder', $config['builder']);
+        $container->setAlias('xidea_user.user_director', $config['director']);
+        $container->setAlias('xidea_user.user_manager', $config['manager']);
+        $container->setAlias('xidea_user.user_loader', $config['loader']);
         
-        if (!empty($config['create'])) {
-            $this->loadCreate($config['create'], $container, $loader);
+         if (!empty($config['create'])) {
+            $this->loadUserCreateSection($config['create'], $container, $loader);
         }
     }
     
-    private function loadCreate(array $config, ContainerBuilder $container, Loader\YamlFileLoader $loader)
+    private function loadUserCreateSection(array $config, ContainerBuilder $container, Loader\YamlFileLoader $loader)
     {
         $container->setParameter('xidea_user.user_create.form.type', $config['form']['type']);
         $container->setParameter('xidea_user.user_create.form.name', $config['form']['name']);
         $container->setParameter('xidea_user.user_create.form.validation_groups', $config['form']['validation_groups']);
-    }
-    
-    private function loadChangePassword(array $config, ContainerBuilder $container, Loader\YamlFileLoader $loader)
-    {
-        $loader->load('change_password.yml');
-        
-        $container->setParameter('xidea_user.change_password.enabled', $config['enabled']);
-        $container->setParameter('xidea_user.change_password.form.type', $config['form']['type']);
-        $container->setParameter('xidea_user.change_password.form.name', $config['form']['name']);
-        $container->setParameter('xidea_user.change_password.form.validation_groups', $config['form']['validation_groups']);
     }
 }

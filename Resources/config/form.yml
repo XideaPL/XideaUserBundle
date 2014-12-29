@@ -1,10 +1,10 @@
 services:
     xidea_user.user_create.form.type:
-        class: Xidea\Bundle\UserBundle\Form\Type\CreateType
+        class: Xidea\Bundle\UserBundle\Form\Type\UserType
         arguments:
             - %xidea_user.user.class%
         tags:
-            - { name: form.type, alias: "xidea_user_create" }
+            - { name: form.type, alias: "xidea_user" }
     xidea_user.user_create.form.factory:
         class: Xidea\Bundle\UserBundle\Form\Factory\FormFactory
         arguments:

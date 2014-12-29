@@ -28,6 +28,8 @@ user_create:
     title: Nowy użytkownik
     route:
       name: Dodaj
+    form:
+        add: Dodaj
 
 user_change_password:
     title: Zmiana hasła

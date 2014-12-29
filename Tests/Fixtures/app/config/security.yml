@@ -22,7 +22,7 @@ security:
             pattern:  ^/login$
             security: false
 
-        secured_area:
+        app:
             pattern:    ^/app
             form_login:
                 login_path: _login
