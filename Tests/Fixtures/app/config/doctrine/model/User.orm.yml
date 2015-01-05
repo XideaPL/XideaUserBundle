@@ -1,0 +1,4 @@
+Xidea\Bundle\UserBundle\Tests\Fixtures\Model\User:
+    type: entity
+    table: user
+    repositoryClass: Xidea\Bundle\UserBundle\Entity\Repository\UserRepository

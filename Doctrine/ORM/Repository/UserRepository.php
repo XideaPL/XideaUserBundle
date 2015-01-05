@@ -7,13 +7,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Xidea\Bundle\UserBundle\Entity;
+namespace Xidea\Bundle\UserBundle\Doctrine\ORM\Repository;
 
-use Xidea\Bundle\UserBundle\Model\AbstractUser as BaseAbstractUser;
+use Doctrine\ORM\EntityRepository;
 
 /**
  * @author Artur Pszczółka <a.pszczolka@xidea.pl>
  */
-abstract class AbstractUser extends BaseAbstractUser
+class UserRepository extends EntityRepository
 {
 }

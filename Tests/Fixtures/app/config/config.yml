@@ -46,23 +46,21 @@ doctrine:
         # path:     "%database_path%"
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
-        auto_mapping: false
-        mappings:
-            XideaUserBundle:
-                type: yml
-                dir: ~
-                prefix: Xidea\Bundle\UserBundle\Entity
-            XideaUserBundleTest:
-                type: yml
-                dir: %kernel.root_dir%/config/doctrine
-                prefix: Xidea\Bundle\UserBundle\Tests\Fixtures\Entity
-                is_bundle: false
+        entity_managers:
+            default:
+                auto_mapping: true
+                mappings:
+                    XideaUserBundleTest:
+                        type: yml
+                        dir: %kernel.root_dir%/config/doctrine/model
+                        prefix: Xidea\Bundle\UserBundle\Tests\Fixtures\Model
+                        is_bundle: false
         resolve_target_entities:
-            Xidea\Component\User\Model\UserInterface: Xidea\Bundle\UserBundle\Tests\Fixtures\Entity\User
+            Xidea\Component\User\Model\UserInterface: Xidea\Bundle\UserBundle\Tests\Fixtures\Model\User
             
 xidea_user:
     user:
-        class: Xidea\Bundle\UserBundle\Tests\Fixtures\Entity\User
+        class: Xidea\Bundle\UserBundle\Tests\Fixtures\Model\User
         factory: xidea_user.user_factory.default
         manager: xidea_user.user_manager.default
         loader: xidea_user.user_loader.default

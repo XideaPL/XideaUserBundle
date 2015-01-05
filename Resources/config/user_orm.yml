@@ -1,7 +1,7 @@
 parameters:
-    xidea_user.user_repository.default.class: Xidea\Bundle\UserBundle\Entity\Repository\UserRepository
-    xidea_user.user_loader.class: Xidea\Bundle\UserBundle\Entity\Loader\UserLoader
-    xidea_user.user_manager.class: Xidea\Bundle\UserBundle\Entity\Manager\UserManager
+    xidea_user.user_repository.default.class: Xidea\Bundle\UserBundle\Doctrine\ORM\Repository\UserRepository
+    xidea_user.user_loader.class: Xidea\Bundle\UserBundle\Doctrine\ORM\Loader\UserLoader
+    xidea_user.user_manager.class: Xidea\Bundle\UserBundle\Doctrine\ORM\Manager\UserManager
   
 services:
     xidea_user.user_repository.default:
