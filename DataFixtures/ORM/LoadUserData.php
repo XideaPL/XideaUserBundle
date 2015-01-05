@@ -79,19 +79,43 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
     {
         $userFactory = $this->getUserFactory();
 
-        $user1 = $userFactory->create();
-        $user1->setUsername('admin');
-        $user1->setPlainPassword('admin');
-        if($user1 instanceof \Xidea\Component\User\Model\AdvancedUserInterface)
+        $admin = $userFactory->create();
+        $admin->setUsername('admin');
+        $admin->setPlainPassword('admin');
+        if($admin instanceof \Xidea\Component\User\Model\AdvancedUserInterface)
         {
-            $user1->setEmail('artur.pszczolka@xidea.pl');
-            $user1->setIsEnabled(true);
+            $admin->setEmail('artur.pszczolka@xidea.pl');
+            $admin->setIsEnabled(true);
         }
-        $user1->addRole('ROLE_SUPER_ADMIN');
-        //$this->addReference('user-premium', $premium);
+        $admin->addRole('ROLE_SUPER_ADMIN');
+        $this->setReference('user-admin', $admin);
+        
+        $johndoe = $userFactory->create();
+        $johndoe->setUsername('johndoe');
+        $johndoe->setPlainPassword('johndoe');
+        if($johndoe instanceof \Xidea\Component\User\Model\AdvancedUserInterface)
+        {
+            $johndoe->setEmail('test@xidea.pl');
+            $johndoe->setIsEnabled(true);
+        }
+        $johndoe->addRole('ROLE_USER');
+        $this->setReference('user-johndoe', $johndoe);
+        
+        $janedoe = $userFactory->create();
+        $janedoe->setUsername('janedoe');
+        $janedoe->setPlainPassword('janedoe');
+        if($janedoe instanceof \Xidea\Component\User\Model\AdvancedUserInterface)
+        {
+            $janedoe->setEmail('test1@xidea.pl');
+            $janedoe->setIsEnabled(true);
+        }
+        $janedoe->addRole('ROLE_USER');
+        $this->setReference('user-janedoe', $janedoe);
         
         return array(
-            $user1
+            $admin,
+            $johndoe,
+            $janedoe
         );
     }
  
