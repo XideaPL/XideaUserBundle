@@ -107,7 +107,7 @@ abstract class AbstractCreateController
             }
         }
 
-        return $this->templating->render('XideaUserBundle:User/Create:create.html.twig', array(
+        return $this->templating->renderResponse('XideaUserBundle:User/Create:create.html.twig', array(
             'form' => $form->createView()
         ));
     }
@@ -116,7 +116,7 @@ abstract class AbstractCreateController
     {
         $form = $this->formHandler->buildForm();
 
-        return $this->templating->render('XideaUserBundle:User/Create:create_form.html.twig', array(
+        return $this->templating->renderResponse('XideaUserBundle:User/Create:create_form.html.twig', array(
             'form' => $form->createView()
         ));
     }

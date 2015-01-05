@@ -32,7 +32,7 @@ class SecurityController
             $session->remove(SecurityContext::AUTHENTICATION_ERROR);
         }
 
-        return $this->templating->render(
+        return $this->templating->renderResponse(
             'XideaUserBundle:Security:login.html.twig',
             array(
                 // last username entered by the user
@@ -44,7 +44,7 @@ class SecurityController
     
     public function loginFormAction()
     {
-        return $this->templating->render(
+        return $this->templating->renderResponse(
             'XideaUserBundle:Security:login_form.html.twig',
             array(
                 'last_username' => '',
