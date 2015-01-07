@@ -11,7 +11,7 @@ namespace Xidea\Bundle\UserBundle\Doctrine\ORM\Loader;
 
 use Xidea\Component\User\Loader\UserLoaderInterface;
 
-use Xidea\Bundle\UserBundle\Entity\Repository\UserRepository;
+use Xidea\Bundle\UserBundle\Doctrine\ORM\Repository\UserRepository;
 
 /**
  * @author Artur Pszczółka <a.pszczolka@xidea.pl>
