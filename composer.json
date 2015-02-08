@@ -14,7 +14,8 @@
     "require": {
         "symfony/symfony": "2.6.*",
         "twig/twig": "~1.12",
-        "xideapl/user": "dev-master@dev"
+        "xideapl/user": "dev-master@dev",
+        "xideapl/base-bundle": "dev-master@dev"
     },
     "require-dev": {
         "doctrine/orm": "*",

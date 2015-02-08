@@ -79,7 +79,7 @@ class UserManager implements UserManagerInterface
     }
     
     public function updatePassword(UserInterface $user)
-    {  
+    {
         if (0 !== strlen($password = $user->getPlainPassword())) {
             $encoder = $this->encoderFactory->getEncoder($user);
             $user->setPassword($encoder->encodePassword($password, $user->getSalt()));

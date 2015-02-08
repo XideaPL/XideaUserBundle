@@ -42,7 +42,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
         $data = $this->loadData();
         
         $encoderFactory = $this->container->get('security.encoder_factory');
-        $userManager = $this->container->get('xidea_user.user_manager');
+        $userManager = $this->container->get('xidea_user.user.manager');
         
         foreach($data as $user) {
             $encoder = $encoderFactory->getEncoder($user);
@@ -67,7 +67,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
      */
     protected function getUserFactory()
     {
-        return $this->container->get('xidea_user.user_factory');
+        return $this->container->get('xidea_user.user.factory');
     }
     
     /**

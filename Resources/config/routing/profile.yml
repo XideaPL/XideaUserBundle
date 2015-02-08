@@ -1,3 +1,0 @@
-xidea_user_profile:
-    pattern:  /users/profile
-    defaults: { _controller: xidea_user.controller.profile:viewAction }

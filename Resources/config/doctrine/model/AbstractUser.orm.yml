@@ -1,4 +1,4 @@
-Xidea\Bundle\UserBundle\Model\AbstractUser:
+Xidea\Component\User\Model\AbstractUser:
     type: mappedSuperclass
     id:
         id:

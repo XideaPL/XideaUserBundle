@@ -1,21 +1,21 @@
 parameters:
-    xidea_user.user_repository.default.class: Xidea\Bundle\UserBundle\Doctrine\ORM\Repository\UserRepository
-    xidea_user.user_loader.class: Xidea\Bundle\UserBundle\Doctrine\ORM\Loader\UserLoader
-    xidea_user.user_manager.class: Xidea\Bundle\UserBundle\Doctrine\ORM\Manager\UserManager
+    xidea_user.user.repository.default.class: Xidea\Bundle\UserBundle\Doctrine\ORM\Repository\UserRepository
+    xidea_user.user.loader.default.class: Xidea\Bundle\UserBundle\Doctrine\ORM\Loader\UserLoader
+    xidea_user.user.manager.default.class: Xidea\Bundle\UserBundle\Doctrine\ORM\Manager\UserManager
   
 services:
-    xidea_user.user_repository.default:
-        class: %xidea_user.user_repository.default.class%
+    xidea_user.user.repository.default:
+        class: %xidea_user.user.repository.default.class%
         factory_service: doctrine.orm.entity_manager
         factory_method: getRepository
         arguments:
             - %xidea_user.user.class%
-    xidea_user.user_loader.default:
-        class: %xidea_user.user_loader.class%
+    xidea_user.user.loader.default:
+        class: %xidea_user.user.loader.default.class%
         arguments:
-            - @xidea_user.user_repository.default
-    xidea_user.user_manager.default:
-        class: %xidea_user.user_manager.class%
+            - @xidea_user.user.repository.default
+    xidea_user.user.manager.default:
+        class: %xidea_user.user.manager.default.class%
         arguments:
             - @doctrine.orm.entity_manager
             - @security.encoder_factory

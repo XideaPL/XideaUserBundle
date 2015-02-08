@@ -1,18 +1,18 @@
 parameters:
-    xidea_user.user_factory.class: Xidea\Component\User\Factory\UserFactory
-    xidea_user.user_builder.class: Xidea\Component\User\Builder\UserBuilder
-    xidea_user.user_director.class: Xidea\Component\User\Builder\UserDirector
+    xidea_user.user.factory.default.class: Xidea\Component\User\Factory\UserFactory
+    xidea_user.user.builder.default.class: Xidea\Component\User\Builder\UserBuilder
+    xidea_user.user.director.default.class: Xidea\Component\User\Builder\UserDirector
   
 services:
-    xidea_user.user_factory.default:
-        class: %xidea_user.user_factory.class%
+    xidea_user.user.factory.default:
+        class: %xidea_user.user.factory.default.class%
         arguments:
             - %xidea_user.user.class%
-    xidea_user.user_builder.default:
-        class: %xidea_user.user_builder.class%
+    xidea_user.user.builder.default:
+        class: %xidea_user.user.builder.default.class%
         arguments:
-            - @xidea_user.user_factory
-    xidea_user.user_director.default:
-        class: %xidea_user.user_director.class%
+            - @xidea_user.user.factory
+    xidea_user.user.director.default:
+        class: %xidea_user.user.director.default.class%
         arguments:
-            - @xidea_user.user_builder
+            - @xidea_user.user.builder

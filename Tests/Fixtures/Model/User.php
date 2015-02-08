@@ -9,12 +9,12 @@
 
 namespace Xidea\Bundle\UserBundle\Tests\Fixtures\Model;
 
-use Xidea\Bundle\UserBundle\Model\AbstractUser;
+use Xidea\Bundle\UserBundle\Model\AbstractAdvancedUser;
 
 /**
  * @author Artur Pszczółka <artur.pszczolka@xidea.pl>
  */
-class User extends AbstractUser
+class User extends AbstractAdvancedUser
 {
     public function setId($id)
     {

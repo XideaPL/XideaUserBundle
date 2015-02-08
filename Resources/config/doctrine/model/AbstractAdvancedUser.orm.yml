@@ -1,9 +1,5 @@
-Xidea\Bundle\UserBundle\Model\AbstractAdvancedUser:
+Xidea\Component\User\Model\AbstractAdvancedUser:
     type: mappedSuperclass
-    id:
-        id:
-            type: integer
-            generator: { strategy: AUTO }
     fields:
         email:
             type: string

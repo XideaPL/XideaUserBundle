@@ -1,3 +1,13 @@
+xidea_user_list:
+    pattern:  /users
+    defaults: { _controller: xidea_user.controller.list:listAction }
+ 
+xidea_user_show:
+    pattern:  /users/{id}
+    defaults: { _controller: xidea_user.controller.show:showAction }
+    requirements:
+        id:  \d+
+    
 xidea_user_create:
     pattern:  /users/create
     defaults: { _controller: xidea_user.controller.create:createAction }

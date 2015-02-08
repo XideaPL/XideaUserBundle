@@ -57,6 +57,14 @@ class UserLoader implements UserLoaderInterface
         return $this->userRepository->findBy($criteria, $orderBy, $limit, $offset);
     }
     
+    /*
+     * {@inheritdoc}
+     */
+    public function loadOneBy(array $criteria, array $orderBy = array())
+    {
+        return $this->userRepository->findOneBy($criteria, $orderBy);
+    }
+    
     /**
      * {@inheritdoc}
      */

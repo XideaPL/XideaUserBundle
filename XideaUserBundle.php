@@ -5,26 +5,14 @@ namespace Xidea\Bundle\UserBundle;
 use Symfony\Component\HttpKernel\Bundle\Bundle,
     Symfony\Component\DependencyInjection\ContainerBuilder;
 
-use Doctrine\Bundle\DoctrineBundle\DependencyInjection\Compiler\DoctrineOrmMappingsPass;
+use Xidea\Bundle\BaseBundle\AbstractBundle;
 
-class XideaUserBundle extends Bundle
+class XideaUserBundle extends AbstractBundle
 {
-    public function build(ContainerBuilder $container)
+    protected function getModelMappings()
     {
-        parent::build($container);
-
-        $this->addRegisterMappingsPass($container);
-    }
-
-    /**
-     * @param ContainerBuilder $container
-     */
-    private function addRegisterMappingsPass(ContainerBuilder $container)
-    {
-        $mappings = array(
-            realpath(__DIR__ . '/Resources/config/doctrine/model') => 'Xidea\Bundle\UserBundle\Model',
+        return array(
+            realpath(__DIR__ . '/Resources/config/doctrine/model') => 'Xidea\Component\User\Model',
         );
-        
-        $container->addCompilerPass(DoctrineOrmMappingsPass::createYamlMappingDriver($mappings));
     }
 }

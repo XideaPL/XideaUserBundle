@@ -13,14 +13,16 @@ use Symfony\Component\HttpFoundation\Request,
     Symfony\Component\EventDispatcher\EventDispatcherInterface,
     Symfony\Component\Form\FormInterface;
 
-use Xidea\Bundle\UserBundle\Form\Factory\FormFactoryInterface,
-    Xidea\Bundle\UserBundle\UserEvents,
-    Xidea\Bundle\UserBundle\Event\FormEvent;
+use Xidea\Bundle\BaseBundle\Form\Factory\FormFactoryInterface,
+    Xidea\Bundle\BaseBundle\Form\Handler\FormHandlerInterface,
+    Xidea\Bundle\BaseBundle\Event\FormEvent;
+
+use Xidea\Bundle\UserBundle\UserEvents;
 
 /**
  * @author Artur Pszczółka <a.pszczolka@xidea.pl>
  */
-class UserFormHandler implements UserFormHandlerInterface
+class UserFormHandler implements FormHandlerInterface
 {
     /*
      * @var FormFactoryInterface
