@@ -23,7 +23,6 @@ class XideaUserExtension extends AbstractExtension
     {
         list($config, $loader) = $this->setUp($configs, new Configuration($this->getAlias()), $container);
 
-        $loader->load('base.yml');
         $loader->load('user.yml');
         $loader->load('user_orm.yml');
         $loader->load('security.yml');
@@ -31,17 +30,13 @@ class XideaUserExtension extends AbstractExtension
         $loader->load('controller.yml');
         $loader->load('twig.yml');
         
-        $this->loadConfigurationSection($config, $container, $loader);
-
         $this->loadUserSection($config['user'], $container, $loader);
-        
-        if(isset($config['template']))
-            $this->loadTemplateSection($config['template'], $container, $loader);
     }
     
     protected function loadUserSection(array $config, ContainerBuilder $container, Loader\YamlFileLoader $loader)
     {
         $container->setParameter('xidea_user.user.class', $config['class']);
+        $container->setAlias('xidea_user.user.configuration', $config['configuration']);
         $container->setAlias('xidea_user.user.factory', $config['factory']);
         $container->setAlias('xidea_user.user.builder', $config['builder']);
         $container->setAlias('xidea_user.user.director', $config['director']);
@@ -50,6 +45,10 @@ class XideaUserExtension extends AbstractExtension
         
         if (!empty($config['form'])) {
             $this->loadUserFormSection($config['form'], $container, $loader);
+        }
+        
+        if(isset($config['template'])) {
+            $this->loadTemplateSection(sprintf('%s.%s', $this->getAlias(), 'user'), $config['template'], $container, $loader);
         }
     }
     

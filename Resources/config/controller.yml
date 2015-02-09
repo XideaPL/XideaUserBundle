@@ -7,7 +7,7 @@ services:
     xidea_user.controller.list:
         class: %xidea_user.controller.list.class%
         arguments:
-            - @xidea_user.configuration
+            - @xidea_user.user.configuration
             - @xidea_user.user.loader
         calls:
             - [setEventDispatcher, [@event_dispatcher]]
@@ -15,7 +15,7 @@ services:
     xidea_user.controller.show:
         class: %xidea_user.controller.show.class%
         arguments:
-            - @xidea_user.configuration
+            - @xidea_user.user.configuration
             - @xidea_user.user.loader
         calls:
             - [setEventDispatcher, [@event_dispatcher]]
@@ -23,7 +23,7 @@ services:
     xidea_user.controller.create:
         class: %xidea_user.controller.create.class%
         arguments:
-            - @xidea_user.configuration
+            - @xidea_user.user.configuration
             - @xidea_user.user.director
             - @xidea_user.user.manager
             - @xidea_user.user.form.create.handler

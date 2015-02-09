@@ -59,10 +59,9 @@ doctrine:
             Xidea\Component\User\Model\UserInterface: Xidea\Bundle\UserBundle\Tests\Fixtures\Model\User
             
 xidea_user:
-    configuration: xidea_user.configuration.default
-    template_configuration: xidea_user.template_configuration.default
     user:
         class: Xidea\Bundle\UserBundle\Tests\Fixtures\Model\User
+        configuration: xidea_user.user.configuration.default
         factory: xidea_user.user.factory.default
         manager: xidea_user.user.manager.default
         loader: xidea_user.user.loader.default
@@ -72,3 +71,5 @@ xidea_user:
                 handler: xidea_user.user.form.create.handler.default
                 type: xidea_user
                 name: user_create
+        template:
+            configuration: xidea_user.user.template.configuration.default

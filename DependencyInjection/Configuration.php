@@ -27,10 +27,8 @@ class Configuration extends AbstractConfiguration
     {
         $treeBuilder = parent::getConfigTreeBuilder();
         $rootNode = $treeBuilder->root($this->alias);
-        
-        $this->addConfigurationSection($rootNode);
+
         $this->addUserSection($rootNode);
-        $this->addTemplateSection($rootNode);
 
         return $treeBuilder;
     }
@@ -38,24 +36,6 @@ class Configuration extends AbstractConfiguration
     public function getDefaultTemplateNamespace()
     {
         return 'XideaUserBundle';
-    }
-    
-    public function getDefaultTemplates()
-    {
-        return array(
-            'list' => array(
-                'path' => 'User\List:list'
-            ),
-            'show' => array(
-                'path' => 'User\Show:show'
-            ),
-            'create' => array(
-                'path' => 'User\Create:create'
-            ),
-            'create_form' => array(
-                'path' => 'User\Create:create_form'
-            )
-        );
     }
     
     protected function addUserSection(ArrayNodeDefinition $node)
@@ -66,6 +46,7 @@ class Configuration extends AbstractConfiguration
                     ->addDefaultsIfNotSet()
                     ->children()
                         ->scalarNode('class')->isRequired()->cannotBeEmpty()->end()
+                        ->scalarNode('configuration')->isRequired()->cannotBeEmpty()->end()
                         ->scalarNode('factory')->defaultValue('xidea_user.user.factory.default')->end()
                         ->scalarNode('builder')->defaultValue('xidea_user.user.builder.default')->end()
                         ->scalarNode('director')->defaultValue('xidea_user.user.director.default')->end()
@@ -90,6 +71,20 @@ class Configuration extends AbstractConfiguration
                                 ->end()
                             ->end()
                         ->end()
+                        ->append($this->addTemplateNode($this->getDefaultTemplateNamespace(), $this->getDefaultTemplateEngine(), array(
+                            'list' => array(
+                                'path' => 'User\List:list'
+                            ),
+                            'show' => array(
+                                'path' => 'User\Show:show'
+                            ),
+                            'create' => array(
+                                'path' => 'User\Create:create'
+                            ),
+                            'create_form' => array(
+                                'path' => 'User\Create:create_form'
+                            )
+                        )))
                     ->end()
                 ->end()
             ->end();
