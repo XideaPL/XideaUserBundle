@@ -8,11 +8,9 @@ use Symfony\Component\HttpKernel\Bundle\Bundle,
 use Xidea\Bundle\BaseBundle\AbstractBundle;
 
 class XideaUserBundle extends AbstractBundle
-{
-    protected function getModelMappings()
+{    
+    protected function getModelNamespace()
     {
-        return array(
-            realpath(__DIR__ . '/Resources/config/doctrine/model') => 'Xidea\Component\User\Model',
-        );
+        return 'Xidea\Component\User\Model';
     }
 }
