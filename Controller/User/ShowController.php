@@ -9,6 +9,7 @@
 
 namespace Xidea\Bundle\UserBundle\Controller\User;
 
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Xidea\Component\User\Loader\UserLoaderInterface;
 use Xidea\Bundle\BaseBundle\ConfigurationInterface,
@@ -33,7 +34,7 @@ class ShowController extends AbstractShowController
         $this->userLoader = $userLoader;
     }
 
-    protected function loadObject($id)
+    protected function loadModel($id)
     {
         $user = $this->userLoader->load($id);
 
@@ -44,7 +45,7 @@ class ShowController extends AbstractShowController
         return $user;
     }
 
-    protected function onPreShow($object, $request)
+    protected function onPreShow($model, Request $request)
     {
         return;
     }

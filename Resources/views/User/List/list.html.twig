@@ -28,12 +28,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for object in objects %}
+                                {% for model in models %}
                                     <tr>
-                                        <td>{{ object.id }}</td>
-                                        <td>{{ object.name }}</td>
-                                        <td>{{ object.createdAt|date() }}</td>
-                                        <td>{{ object.updatedAt|date() }}</td>
+                                        <td>{{ model.id }}</td>
+                                        <td>{{ model.name }}</td>
+                                        <td>{{ model.createdAt|date() }}</td>
+                                        <td>{{ model.updatedAt|date() }}</td>
                                     </tr>
                                 {% endfor %}
                             </tbody>

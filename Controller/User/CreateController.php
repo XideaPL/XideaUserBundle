@@ -9,6 +9,8 @@
 
 namespace Xidea\Bundle\UserBundle\Controller\User;
 
+use Symfony\Component\HttpFoundation\Request,
+    Symfony\Component\HttpFoundation\Response;
 use Xidea\Component\User\Builder\UserDirectorInterface,
     Xidea\Component\User\Manager\UserManagerInterface;
 use Xidea\Bundle\BaseBundle\ConfigurationInterface,
@@ -34,40 +36,40 @@ class CreateController extends AbstractCreateController
      */
     protected $userManager;
 
-    public function __construct(ConfigurationInterface $configuration, UserDirectorInterface $userDirector, UserManagerInterface $objectManager, FormHandlerInterface $formHandler)
+    public function __construct(ConfigurationInterface $configuration, UserDirectorInterface $userDirector, UserManagerInterface $modelManager, FormHandlerInterface $formHandler)
     {
-        parent::__construct($configuration, $objectManager, $formHandler);
+        parent::__construct($configuration, $modelManager, $formHandler);
 
         $this->userDirector = $userDirector;
     }
 
-    protected function createObject()
+    protected function createModel()
     {
         return $this->userDirector->build();
     }
 
-    protected function onPreCreate($object, $request)
+    protected function onPreCreate($model, Request $request)
     {
-        $this->dispatch(UserEvents::PRE_CREATE, $event = new GetUserResponseEvent($object, $request));
+        $this->dispatch(UserEvents::PRE_CREATE, $event = new GetUserResponseEvent($model, $request));
 
         return $event->getResponse();
     }
 
-    protected function onCreateSuccess($object, $request)
+    protected function onCreateSuccess($model, Request $request)
     {
-        $this->dispatch(UserEvents::CREATE_SUCCESS, $event = new GetUserResponseEvent($object, $request));
+        $this->dispatch(UserEvents::CREATE_SUCCESS, $event = new GetUserResponseEvent($model, $request));
 
         if (null === $response = $event->getResponse()) {
             $response = $this->redirectToRoute('xidea_user_show', array(
-                'id' => $object->getId()
+                'id' => $model->getId()
             ));
         }
 
         return $response;
     }
 
-    protected function onCreateCompleted($object, $request, $response)
+    protected function onCreateCompleted($model, Request $request, Response $response)
     {
-        $this->dispatch(UserEvents::CREATE_COMPLETED, new FilterUserResponseEvent($object, $request, $response));
+        $this->dispatch(UserEvents::CREATE_COMPLETED, new FilterUserResponseEvent($model, $request, $response));
     }
 }

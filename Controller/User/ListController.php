@@ -31,12 +31,12 @@ class ListController extends AbstractListController
         $this->userLoader = $userLoader;
     }
     
-    protected function loadObjects(Request $request)
+    protected function loadModels(Request $request)
     {
         return $this->userLoader->loadAll();
     }
     
-    protected function onPreList($objects, $request)
+    protected function onPreList($models, Request $request)
     {
         return;
     }
