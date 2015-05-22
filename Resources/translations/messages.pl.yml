@@ -15,17 +15,20 @@ user_form:
     create:
         submit: Utwórz
         
-user_action:
-    login:
+user_login:
         title: Logowanie
-    logout:
+        
+user_logout:
         title: Wyloguj
-    list:
+        
+user_list:
         title: Użytkownicy
-    show:
-        title: %user_name%
-        details:
-            title: Szczegóły użytkownika
-    create:
+        
+user_show:
+    title: %user_name%
+    details:
+        title: Szczegóły użytkownika
+        
+user_create:
         title: Nowy użytkownik
       
