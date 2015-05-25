@@ -1,0 +1,9 @@
+parameters:
+    xidea_user.profile.manager.default.class: Xidea\Bundle\UserBundle\Doctrine\ORM\Manager\ProfileManager
+  
+services:
+    xidea_user.profile.manager.default:
+        class: %xidea_user.profile.manager.default.class%
+        arguments:
+            - @doctrine.orm.entity_manager
+            - @event_dispatcher

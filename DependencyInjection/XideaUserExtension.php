@@ -31,6 +31,7 @@ class XideaUserExtension extends AbstractExtension
         $loader->load('twig.yml');
         
         $this->loadUserSection($config['user'], $container, $loader);
+        $this->loadProfileSection($config['profile'], $container, $loader);
     }
     
     protected function loadUserSection(array $config, ContainerBuilder $container, Loader\YamlFileLoader $loader)
@@ -60,6 +61,22 @@ class XideaUserExtension extends AbstractExtension
         $container->setParameter('xidea_user.user.form.create.type', $config['create']['type']);
         $container->setParameter('xidea_user.user.form.create.name', $config['create']['name']);
         $container->setParameter('xidea_user.user.form.create.validation_groups', $config['create']['validation_groups']);
+    }
+    
+    protected function loadProfileSection(array $config, ContainerBuilder $container, Loader\YamlFileLoader $loader)
+    {
+        $loader->load('profile.yml');
+        $loader->load('profile_orm.yml');
+        $loader->load('profile_controller.yml');
+        
+        $container->setParameter('xidea_user.profile.class', $config['class']);
+        $container->setAlias('xidea_user.profile.configuration', $config['configuration']);
+        $container->setAlias('xidea_user.profile.factory', $config['factory']);
+        $container->setAlias('xidea_user.profile.manager', $config['manager']);
+        
+        if(isset($config['template'])) {
+            $this->loadTemplateSection(sprintf('%s.%s', $this->getAlias(), 'profile'), $config['template'], $container, $loader);
+        }
     }
     
     protected function getConfigurationDirectory()

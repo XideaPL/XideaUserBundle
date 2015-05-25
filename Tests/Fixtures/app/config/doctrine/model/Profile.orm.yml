@@ -1,0 +1,2 @@
+Xidea\Bundle\UserBundle\Tests\Fixtures\Model\Profile:
+    type: entity

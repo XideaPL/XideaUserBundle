@@ -1,0 +1,5 @@
+xidea_profile_show:
+    pattern:  /users/{id}/profile
+    defaults: { _controller: xidea_user.profile_controller.show:showAction }
+    requirements:
+        id:  \d+

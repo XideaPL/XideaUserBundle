@@ -1,0 +1,20 @@
+parameters:
+    xidea_user.profile.configuration.default.class: Xidea\Bundle\BaseBundle\Configuration
+    xidea_user.profile.factory.default.class: Xidea\Component\Base\Factory\ModelFactory
+    xidea_user.profile.template.configuration.default.class: Xidea\Bundle\BaseBundle\TemplateConfiguration
+  
+services:
+    xidea_user.profile.configuration.default:
+        class: %xidea_user.profile.configuration.default.class%
+        arguments:
+            - @xidea_user.profile.template.configuration
+    xidea_user.profile.template.configuration.default:
+        class: %xidea_user.profile.template.configuration.default.class%
+        arguments:
+            - %xidea_user.profile.template.namespace%
+            - %xidea_user.profile.template.templates%
+            - %xidea_user.profile.template.engine%
+    xidea_user.profile.factory.default:
+        class: %xidea_user.profile.factory.default.class%
+        arguments:
+            - %xidea_user.profile.class%

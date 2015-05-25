@@ -5,3 +5,7 @@ xidea_user_security:
 xidea_user:
     resource: "@XideaUserBundle/Resources/config/routing/user.yml"
     prefix:   /app
+    
+xidea_user_profile:
+    resource: "@XideaUserBundle/Resources/config/routing/profile.yml"
+    prefix:   /app

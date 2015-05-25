@@ -25,10 +25,19 @@ user_list:
         title: Użytkownicy
         
 user_show:
-    title: %user_name%
+    title: %name%
     details:
         title: Szczegóły użytkownika
         
 user_create:
         title: Nowy użytkownik
+        
+profile:
+    label: Użytkownik
+    name: Nazwa
+    
+profile_show:
+    title: %name%
+    details:
+        title: Profil użytkownika
       

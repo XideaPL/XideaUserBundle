@@ -16,13 +16,13 @@ use Xidea\Bundle\UserBundle\Tests\Fixtures\Model\User;
  */
 class UserTest extends \PHPUnit_Framework_TestCase
 {
-    public function testId()
+    public function testUsername()
     {
         $user = $this->createUser();
-        $this->assertNull($user->getId());
+        $this->assertNull($user->getUsername());
         
-        $user->setId(1);
-        $this->assertEquals(1, $user->getId());
+        $user->setUsername('johndoe');
+        $this->assertEquals('johndoe', $user->getUsername());
     }
     
     protected function createUser()

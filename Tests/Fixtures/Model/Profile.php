@@ -9,11 +9,11 @@
 
 namespace Xidea\Bundle\UserBundle\Tests\Fixtures\Model;
 
-use Xidea\Bundle\UserBundle\Model\AbstractAdvancedUser;
+use Xidea\Component\User\Model\AbstractProfile;
 
 /**
  * @author Artur Pszczółka <artur.pszczolka@xidea.pl>
  */
-class User extends AbstractAdvancedUser
+class Profile extends AbstractProfile
 {
 }

@@ -29,6 +29,7 @@ class Configuration extends AbstractConfiguration
         $rootNode = $treeBuilder->root($this->alias);
 
         $this->addUserSection($rootNode);
+        $this->addProfileSection($rootNode);
 
         return $treeBuilder;
     }
@@ -83,6 +84,27 @@ class Configuration extends AbstractConfiguration
                             ),
                             'create_form' => array(
                                 'path' => 'User\Create:create_form'
+                            )
+                        )))
+                    ->end()
+                ->end()
+            ->end();
+    }
+    
+    protected function addProfileSection(ArrayNodeDefinition $node)
+    {
+        $node
+            ->children()
+                ->arrayNode('profile')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->scalarNode('class')->isRequired()->cannotBeEmpty()->end()
+                        ->scalarNode('configuration')->isRequired()->cannotBeEmpty()->end()
+                        ->scalarNode('factory')->defaultValue('xidea_user.profile.factory.default')->end()
+                        ->scalarNode('manager')->defaultValue('xidea_user.profile.manager.default')->end()
+                        ->append($this->addTemplateNode($this->getDefaultTemplateNamespace(), $this->getDefaultTemplateEngine(), array(
+                            'show' => array(
+                                'path' => 'Profile\Show:show'
                             )
                         )))
                     ->end()

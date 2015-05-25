@@ -25,3 +25,8 @@ Xidea\Component\User\Model\AbstractAdvancedUser:
             type: string
             length: 255
             nullable: true
+    oneToOne:
+        profile:
+            targetEntity: Xidea\Component\User\Model\ProfileInterface
+            inversedBy: user
+            cascade: ["persist"]
