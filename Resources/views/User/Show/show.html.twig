@@ -1,12 +1,6 @@
 {% extends 'XideaUserBundle::main.html.twig' %}
 {% block bundle_title %}
-    <div class="row">
-        <div class="col-lg-12">
-            <h1 class="page-header">{{ 'user_show.title'|trans({'%name%':model.name}) }}</h1>
-        </div>
-        <!-- /.col-lg-12 -->
-    </div>
-    <!-- /.row -->
+    <h1 class="page-header">{{ 'user_show.title'|trans({'%name%':model.name}) }}</h1>
 {% endblock %}
 {% block bundle_main %}
     <div class="row">
