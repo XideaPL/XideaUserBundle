@@ -6,8 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="language" content="pl" />
         
-        <title>{% block meta_title %}XSupport{% endblock %}</title>
-        <meta name="description" content="{% block meta_description %}XSupport{% endblock %}" />
+        <title>{% block meta_title %}Users{% endblock %}</title>
+        <meta name="description" content="{% block meta_description %}Users{% endblock %}" />
         {% block meta_tags %}{% endblock %}
             
         {% block stylesheets %}
@@ -19,7 +19,8 @@
             {{ include('::header.html.twig') }}
 
             <div id="page-wrapper">
-                {% block main %}{% endblock %}
+                {% block page_title %}{% endblock %}
+                {% block page_main %}{% endblock %}
             </div>
             <!-- /#page-wrapper -->
 
