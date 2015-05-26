@@ -88,18 +88,23 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
     protected function loadData()
     {
         $userFactory = $this->getUserFactory();
-        $profileFactory = $this->getProfileFactory();
+        
+        if($isProfileEnabled = $this->container->getParameter('xidea_user.profile.enabled')) {
+            $profileFactory = $this->getProfileFactory();
+        }
 
         $admin = $userFactory->create();
         $admin->setUsername('admin');
         $admin->setPlainPassword('admin');
         if($admin instanceof \Xidea\Component\User\Model\AdvancedUserInterface)
         {
-            $profile = $profileFactory->create();
-            $profile->setName('Admin');
             $admin->setEmail('artur.pszczolka@xidea.pl');
             $admin->setIsEnabled(true);
-            $admin->setProfile($profile);
+            if($isProfileEnabled) {
+                $profile = $profileFactory->create();
+                $profile->setName('Admin');
+                $admin->setProfile($profile);
+            }
         }
         $admin->addRole('ROLE_SUPER_ADMIN');
         $this->setReference('user-admin', $admin);
@@ -109,11 +114,13 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
         $johndoe->setPlainPassword('johndoe');
         if($johndoe instanceof \Xidea\Component\User\Model\AdvancedUserInterface)
         {
-            $profile = $profileFactory->create();
-            $profile->setName('John Doe');
             $johndoe->setEmail('test@xidea.pl');
             $johndoe->setIsEnabled(true);
-            $johndoe->setProfile($profile);
+            if($isProfileEnabled) {
+                $profile = $profileFactory->create();
+                $profile->setName('John Doe');
+                $johndoe->setProfile($profile);
+            }
         }
         $johndoe->addRole('ROLE_USER');
         $this->setReference('user-johndoe', $johndoe);
@@ -123,11 +130,13 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
         $janedoe->setPlainPassword('janedoe');
         if($janedoe instanceof \Xidea\Component\User\Model\AdvancedUserInterface)
         {
-            $profile = $profileFactory->create();
-            $profile->setName('Jane Doe');
             $janedoe->setEmail('test1@xidea.pl');
             $janedoe->setIsEnabled(true);
-            $janedoe->setProfile($profile);
+            if($isProfileEnabled) {
+                $profile = $profileFactory->create();
+                $profile->setName('Jane Doe');
+                $janedoe->setProfile($profile);
+            }
         }
         $janedoe->addRole('ROLE_USER');
         $this->setReference('user-janedoe', $janedoe);
