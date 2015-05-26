@@ -96,6 +96,7 @@ class Configuration extends AbstractConfiguration
         $node
             ->children()
                 ->arrayNode('profile')
+                    ->canBeDisabled()
                     ->addDefaultsIfNotSet()
                     ->children()
                         ->scalarNode('class')->isRequired()->cannotBeEmpty()->end()

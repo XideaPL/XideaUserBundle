@@ -76,6 +76,7 @@ xidea_user:
         template:
             configuration: xidea_user.user.template.configuration.default
     profile:
+        enabled: true
         class: Xidea\Bundle\UserBundle\Tests\Fixtures\Model\Profile
         configuration: xidea_user.profile.configuration.default
         factory: xidea_user.profile.factory.default

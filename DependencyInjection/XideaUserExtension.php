@@ -65,15 +65,21 @@ class XideaUserExtension extends AbstractExtension
     
     protected function loadProfileSection(array $config, ContainerBuilder $container, Loader\YamlFileLoader $loader)
     {
+        $container->setParameter('xidea_user.profile.enabled', $config['enabled']);
+        
+        if(!$config['enabled']) {
+            return false;
+        }
+            
         $loader->load('profile.yml');
         $loader->load('profile_orm.yml');
         $loader->load('profile_controller.yml');
-        
+
         $container->setParameter('xidea_user.profile.class', $config['class']);
         $container->setAlias('xidea_user.profile.configuration', $config['configuration']);
         $container->setAlias('xidea_user.profile.factory', $config['factory']);
         $container->setAlias('xidea_user.profile.manager', $config['manager']);
-        
+
         if(isset($config['template'])) {
             $this->loadTemplateSection(sprintf('%s.%s', $this->getAlias(), 'profile'), $config['template'], $container, $loader);
         }
