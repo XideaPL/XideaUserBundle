@@ -6,7 +6,7 @@
     {% block user_main %}
         <div class="box box-default">
             <div class="box-header">
-                {{ 'user_list.title'|trans }}
+                <h3 class="box-title">{{ 'user_list.title'|trans }}</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -31,6 +31,14 @@
                                     </tr>
                                 {% endfor %}
                             </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>#</th>
+                                    <th>{{ 'user.name'|trans }}</th>
+                                    <th>{{ 'user.created_at'|trans }}</th>
+                                    <th>{{ 'user.updated_at'|trans }}</th>
+                                </tr>
+                            </tfoot>
                         </table>
                     </div>
                     <!-- /.user-list -->
