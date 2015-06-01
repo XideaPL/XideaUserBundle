@@ -3,28 +3,32 @@
     <h1 class="page-header">{{ 'profile_show.title'|trans({'%name%':model.name}) }}</h1>
 {% endblock %}
 {% block bundle_main %}
-    <div class="row">
-        <div class="col-lg-8">
-            <div class="panel panel-default">
-                <div class="panel-heading">
+    {% block profile_main %}
+        {% block profile_details_box %}
+            <div class="box user-profile-box">
+                <div class="box-header">
                     {{ 'profile_show.details.title'|trans }}
                 </div>
-                <!-- /.panel-heading -->
-                <div class="panel-body">
-                    <table class="table table-bordered table-striped">
-                        <tbody>
-                          <tr>
-                            <th scope="row">
-                              <code>{{ 'profile.name'|trans }}</code>
-                            </th>
-                            <td>{{ model.name }}</td>
-                          </tr>
-                        </tbody>
-                      </table>
+                <!-- /.box-heading -->
+                <div class="box-body">
+                    {% block profile_details %}
+                        <div class="user-profile-details">
+                            <table class="table table-bordered table-striped user-profile-table">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">
+                                            <code>{{ 'profile.name'|trans }}</code>
+                                        </th>
+                                        <td>{{ model.name }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    {% endblock %}
                 </div>
-                <!-- /.panel-body -->
+                <!-- /.box-body -->
             </div>
-            <!-- /.panel -->
-        </div>
-    </div>
+            <!-- /.box -->
+        {% endblock %}
+    {% endblock %}
 {% endblock %}

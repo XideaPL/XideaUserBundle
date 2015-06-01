@@ -3,40 +3,44 @@
     <h1 class="page-header">{{ 'user_show.title'|trans({'%name%':model.name}) }}</h1>
 {% endblock %}
 {% block bundle_main %}
-    <div class="row">
-        <div class="col-lg-8">
-            <div class="panel panel-default">
-                <div class="panel-heading">
+    {% block user_main %}
+        {% block user_details_box %}
+            <div class="box">
+                <div class="box-header">
                     {{ 'user_show.details.title'|trans }}
                 </div>
-                <!-- /.panel-heading -->
-                <div class="panel-body">
-                    <table class="table table-bordered table-striped">
-                        <tbody>
-                          <tr>
-                            <th scope="row">
-                              <code>{{ 'user.name'|trans }}</code>
-                            </th>
-                            <td>{{ model.name }}</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">
-                              <code>{{ 'user.created_at'|trans }}</code>
-                            </th>
-                            <td>{{ model.createdAt|date }}</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">
-                              <code>{{ 'user.updated_at'|trans }}</code>
-                            </th>
-                            <td>{{ model.updatedAt|date }}</td>
-                          </tr>
-                        </tbody>
-                      </table>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    {% block user_details %}
+                        <div class="user-details">
+                            <table class="table table-bordered table-striped user-table">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">
+                                            <code>{{ 'user.name'|trans }}</code>
+                                        </th>
+                                        <td>{{ model.name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <code>{{ 'user.created_at'|trans }}</code>
+                                        </th>
+                                        <td>{{ model.createdAt|date }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <code>{{ 'user.updated_at'|trans }}</code>
+                                        </th>
+                                        <td>{{ model.updatedAt|date }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    {% endblock %}
                 </div>
-                <!-- /.panel-body -->
+                <!-- /.box-body -->
             </div>
-            <!-- /.panel -->
-        </div>
-    </div>
+            <!-- /.box -->
+        {% endblock %}
+    {% endblock %}
 {% endblock %}

@@ -3,19 +3,21 @@
     <h1 class="page-header">{{ 'user_login.title'|trans }}</h1>
 {% endblock %}
 {% block bundle_main %}
-    <div class="row">
-        <div class="col-lg-8">
-            <div class="panel panel-default">
-                <div class="panel-heading">
+    {% block login_main %}
+        {% block login_box %}
+            <div class="box login-box">
+                <div class="box-header">
                     {{ 'user_login.title'|trans }}
                 </div>
-                <!-- /.panel-heading -->
-                <div class="panel-body">
-                   {{ include('XideaUserBundle:Security:login_form.html.twig') }}
+                <!-- /.box-header -->
+                <div class="box-body">
+                    {% block login_form %}
+                        {{ include(xidea_template('xidea_user', 'login_form')) }}
+                    {% endblock %}
                 </div>
-                <!-- /.panel-body -->
+                <!-- /.box-body -->
             </div>
-            <!-- /.panel -->
-        </div>
-    </div>
+            <!-- /.box -->
+        {% endblock %}
+    {% endblock %}
 {% endblock %}

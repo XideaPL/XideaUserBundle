@@ -3,16 +3,16 @@
     <h1 class="page-header">{{ 'user_list.title'|trans }}</h1>
 {% endblock %}
 {% block bundle_main %}
-    <div class="row">
-        <div class="col-lg-8">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    {{ 'user_list.title'|trans }}
-                </div>
-                <!-- /.panel-heading -->
-                <div class="panel-body">
-                    <div class="table-responsive">
-                        <table class="table table-striped">
+    {% block user_main %}
+        <div class="box box-default">
+            <div class="box-header">
+                {{ 'user_list.title'|trans }}
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                {% block user_list %}
+                    <div class="user-list">
+                        <table class="table table-striped user-table">
                             <thead>
                                 <tr>
                                     <th>#</th>
@@ -33,11 +33,11 @@
                             </tbody>
                         </table>
                     </div>
-                    <!-- /.table-responsive -->
-                </div>
-                <!-- /.panel-body -->
+                    <!-- /.user-list -->
+                {% endblock %}
             </div>
-            <!-- /.panel -->
+            <!-- /.box-body -->
         </div>
-    </div>
+        <!-- /.box -->
+    {% endblock %}
 {% endblock %}

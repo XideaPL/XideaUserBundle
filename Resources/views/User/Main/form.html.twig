@@ -1,0 +1,7 @@
+{% form_theme form with '::fields.html.twig' %}
+{{ form_start(form, {'multipart': true}) }}
+    {{ form_widget(form) }}
+    <p>
+        {{ 'form.required_fields'|trans|raw }}
+    </p>
+{{ form_end(form) }}
