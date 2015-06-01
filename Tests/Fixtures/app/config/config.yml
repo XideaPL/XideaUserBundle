@@ -73,13 +73,11 @@ xidea_user:
                 handler: xidea_user.user.form.create.handler.default
                 type: xidea_user
                 name: user_create
-        template:
-            configuration: xidea_user.user.template.configuration.default
     profile:
         enabled: true
         class: Xidea\Bundle\UserBundle\Tests\Fixtures\Model\Profile
         configuration: xidea_user.profile.configuration.default
         factory: xidea_user.profile.factory.default
         manager: xidea_user.profile.manager.default
-        template:
-            configuration: xidea_user.profile.template.configuration.default
+    template:
+        configuration: xidea_user.template.configuration.default

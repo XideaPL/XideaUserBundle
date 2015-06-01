@@ -5,4 +5,6 @@ services:
     xidea_user.controller.security:
         class: %xidea_user.controller.security.class%
         arguments:
-            - @templating
+            - @xidea_user.user.configuration
+        calls:
+            - [setTemplating, [@templating]]

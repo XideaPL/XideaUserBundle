@@ -2,20 +2,30 @@
 
 namespace Xidea\Bundle\UserBundle\Controller;
 
+use Xidea\Bundle\BaseBundle\Controller\AbstractController,
+    Xidea\Bundle\BaseBundle\ConfigurationInterface;
 use Symfony\Component\Security\Core\SecurityContext,
-    Symfony\Component\HttpFoundation\Request,
-    Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
+    Symfony\Component\HttpFoundation\Request;
 
-class SecurityController
+class SecurityController extends AbstractController
 {
     /*
-     * @var EngineInterface
+     * @var string
      */
-    protected $templating;
-
-    public function __construct(EngineInterface $templating)
+    protected $loginTemplate = 'login';
+    
+    /*
+     * @var string
+     */
+    protected $loginFormTemplate = 'login_form';
+    
+    /**
+     * 
+     * @param ConfigurationInterface $configuration
+     */
+    public function __construct(ConfigurationInterface $configuration)
     {
-        $this->templating = $templating;
+        parent::__construct($configuration);
     }
     
     public function loginAction(Request $request)
@@ -32,24 +42,28 @@ class SecurityController
             $session->remove(SecurityContext::AUTHENTICATION_ERROR);
         }
 
-        return $this->templating->renderResponse(
-            'XideaUserBundle:Security:login.html.twig',
-            array(
+        return $this->onLoginView(array(
                 // last username entered by the user
                 'last_username' => $session->get(SecurityContext::LAST_USERNAME),
                 'error'         => $error,
-            )
-        );
+        ), $request);
     }
     
-    public function loginFormAction()
+    public function loginFormAction(Request $request)
     {
-        return $this->templating->renderResponse(
-            'XideaUserBundle:Security:login_form.html.twig',
-            array(
+        return $this->onLoginFormView(array(
                 'last_username' => '',
                 'error'         => '',
-            )
-        );
+        ), $request);
+    }
+    
+    protected function onLoginView(array $parameters = array(), Request $request = null)
+    {
+        return $this->render($this->getTemplateConfiguration()->getTemplate($this->loginTemplate), $parameters);
+    }
+
+    protected function onLoginFormView(array $parameters = array(), Request $request = null)
+    {
+        return $this->render($this->getTemplateConfiguration()->getTemplate($this->loginFormTemplate), $parameters);
     }
 }

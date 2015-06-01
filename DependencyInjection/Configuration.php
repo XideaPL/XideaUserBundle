@@ -30,13 +30,14 @@ class Configuration extends AbstractConfiguration
 
         $this->addUserSection($rootNode);
         $this->addProfileSection($rootNode);
+        $this->addTemplateSection($rootNode);
 
         return $treeBuilder;
     }
     
     public function getDefaultTemplateNamespace()
     {
-        return 'XideaUserBundle';
+        return '@XideaUser';
     }
     
     protected function addUserSection(ArrayNodeDefinition $node)
@@ -72,20 +73,6 @@ class Configuration extends AbstractConfiguration
                                 ->end()
                             ->end()
                         ->end()
-                        ->append($this->addTemplateNode($this->getDefaultTemplateNamespace(), $this->getDefaultTemplateEngine(), array(
-                            'list' => array(
-                                'path' => 'User\List:list'
-                            ),
-                            'show' => array(
-                                'path' => 'User\Show:show'
-                            ),
-                            'create' => array(
-                                'path' => 'User\Create:create'
-                            ),
-                            'create_form' => array(
-                                'path' => 'User\Create:create_form'
-                            )
-                        )))
                     ->end()
                 ->end()
             ->end();
@@ -103,13 +90,16 @@ class Configuration extends AbstractConfiguration
                         ->scalarNode('configuration')->isRequired()->cannotBeEmpty()->end()
                         ->scalarNode('factory')->defaultValue('xidea_user.profile.factory.default')->end()
                         ->scalarNode('manager')->defaultValue('xidea_user.profile.manager.default')->end()
-                        ->append($this->addTemplateNode($this->getDefaultTemplateNamespace(), $this->getDefaultTemplateEngine(), array(
-                            'show' => array(
-                                'path' => 'Profile\Show:show'
-                            )
-                        )))
                     ->end()
                 ->end()
+            ->end();
+    }
+    
+    protected function addTemplateSection(ArrayNodeDefinition $node)
+    {
+        $node
+            ->children()
+                ->append($this->addTemplateNode($this->getDefaultTemplateNamespace(), $this->getDefaultTemplateEngine(), [], true))
             ->end();
     }
 }

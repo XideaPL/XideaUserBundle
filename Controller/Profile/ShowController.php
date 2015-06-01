@@ -33,6 +33,8 @@ class ShowController extends AbstractShowController
         parent::__construct($configuration);
 
         $this->userLoader = $userLoader;
+        
+        $this->showTemplate = 'profile_show';
     }
 
     protected function loadModel($id)

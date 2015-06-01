@@ -3,19 +3,12 @@ parameters:
     xidea_user.user.factory.default.class: Xidea\Component\Base\Factory\ModelFactory
     xidea_user.user.builder.default.class: Xidea\Component\User\Builder\UserBuilder
     xidea_user.user.director.default.class: Xidea\Component\User\Builder\UserDirector
-    xidea_user.user.template.configuration.default.class: Xidea\Bundle\BaseBundle\TemplateConfiguration
   
 services:
     xidea_user.user.configuration.default:
         class: %xidea_user.user.configuration.default.class%
         arguments:
-            - @xidea_user.user.template.configuration
-    xidea_user.user.template.configuration.default:
-        class: %xidea_user.user.template.configuration.default.class%
-        arguments:
-            - %xidea_user.user.template.namespace%
-            - %xidea_user.user.template.templates%
-            - %xidea_user.user.template.engine%
+            - @xidea_user.template.configuration
     xidea_user.user.factory.default:
         class: %xidea_user.user.factory.default.class%
         arguments:

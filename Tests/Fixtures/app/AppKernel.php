@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
+            new Xidea\Bundle\BaseBundle\XideaBaseBundle(),
             new Xidea\Bundle\UserBundle\XideaUserBundle(),
         );
     }

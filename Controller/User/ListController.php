@@ -29,6 +29,8 @@ class ListController extends AbstractListController
         parent::__construct($configuration);
         
         $this->userLoader = $userLoader;
+        
+        $this->listTemplate = 'user_list';
     }
     
     protected function loadModels(Request $request)

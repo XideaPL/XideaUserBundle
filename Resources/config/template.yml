@@ -1,0 +1,14 @@
+parameters:
+    xidea_user.template.configuration.default.class: Xidea\Bundle\BaseBundle\TemplateConfiguration
+  
+services:
+    xidea_user.template.configuration.default:
+        class: %xidea_user.template.configuration.default.class%
+        arguments:
+            - %xidea_user.template.namespace%
+            - %xidea_user.template.templates%
+            - %xidea_user.template.engine%
+        calls:
+            - [setNamespacedPaths, [%xidea_user.template.namespaced_paths%]]
+        tags:
+            - { name: xidea_base.template.configuration, alias: xidea_user }

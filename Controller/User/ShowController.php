@@ -24,14 +24,15 @@ class ShowController extends AbstractShowController
     /*
      * @var UserLoaderInterface
      */
-
     protected $userLoader;
-
+    
     public function __construct(ConfigurationInterface $configuration, UserLoaderInterface $userLoader)
     {
         parent::__construct($configuration);
 
         $this->userLoader = $userLoader;
+        
+        $this->showTemplate = 'user_show';
     }
 
     protected function loadModel($id)

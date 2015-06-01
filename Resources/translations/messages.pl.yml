@@ -16,10 +16,10 @@ user_form:
         submit: Utwórz
         
 user_login:
-        title: Logowanie
+    title: Logowanie
         
 user_logout:
-        title: Wyloguj
+    title: Wyloguj
         
 user_list:
         title: Użytkownicy
@@ -30,7 +30,7 @@ user_show:
         title: Szczegóły użytkownika
         
 user_create:
-        title: Nowy użytkownik
+    title: Nowy użytkownik
         
 profile:
     label: Użytkownik

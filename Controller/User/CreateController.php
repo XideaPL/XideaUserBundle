@@ -41,6 +41,9 @@ class CreateController extends AbstractCreateController
         parent::__construct($configuration, $modelManager, $formHandler);
 
         $this->userDirector = $userDirector;
+        
+        $this->createTemplate = 'user_create';
+        $this->createFormTemplate = 'user_create_template';
     }
 
     protected function createModel()
@@ -70,6 +73,8 @@ class CreateController extends AbstractCreateController
 
     protected function onCreateCompleted($model, Request $request, Response $response)
     {
-        $this->dispatch(UserEvents::CREATE_COMPLETED, new FilterUserResponseEvent($model, $request, $response));
+        $this->dispatch(UserEvents::CREATE_COMPLETED, $event = new FilterUserResponseEvent($model, $request, $response));
+        
+        return $event->getResponse();
     }
 }

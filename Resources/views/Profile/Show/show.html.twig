@@ -1,4 +1,4 @@
-{% extends 'XideaUserBundle::main.html.twig' %}
+{% extends xidea_template('xidea_user', 'profile_main') %}
 {% block bundle_title %}
     <h1 class="page-header">{{ 'profile_show.title'|trans({'%name%':model.name}) }}</h1>
 {% endblock %}
