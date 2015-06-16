@@ -11,7 +11,7 @@ services:
             - @xidea_user.user.loader
         calls:
             - [setEventDispatcher, [@event_dispatcher]]
-            - [setTemplating, [@templating]]
+            - [setTemplateManager, [@xidea_base.template_manager]]
     xidea_user.controller.show:
         class: %xidea_user.controller.show.class%
         arguments:
@@ -19,7 +19,7 @@ services:
             - @xidea_user.user.loader
         calls:
             - [setEventDispatcher, [@event_dispatcher]]
-            - [setTemplating, [@templating]]
+            - [setTemplateManager, [@xidea_base.template_manager]]
     xidea_user.controller.create:
         class: %xidea_user.controller.create.class%
         arguments:
@@ -30,4 +30,4 @@ services:
         calls:
             - [setEventDispatcher, [@event_dispatcher]]
             - [setRouter, [@router]]
-            - [setTemplating, [@templating]]
+            - [setTemplateManager, [@xidea_base.template_manager]]

@@ -27,9 +27,8 @@ class ListController extends AbstractListController
     public function __construct(ConfigurationInterface $configuration, UserLoaderInterface $userLoader)
     {
         parent::__construct($configuration);
-        
+
         $this->userLoader = $userLoader;
-        
         $this->listTemplate = 'user_list';
     }
     

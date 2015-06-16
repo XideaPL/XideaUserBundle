@@ -59,11 +59,11 @@ class SecurityController extends AbstractController
     
     protected function onLoginView(array $parameters = array(), Request $request = null)
     {
-        return $this->render($this->getTemplateConfiguration()->getTemplate($this->loginTemplate), $parameters);
+        return $this->render($this->loginTemplate, $parameters);
     }
 
     protected function onLoginFormView(array $parameters = array(), Request $request = null)
     {
-        return $this->render($this->getTemplateConfiguration()->getTemplate($this->loginFormTemplate), $parameters);
+        return $this->render($this->loginFormTemplate, $parameters);
     }
 }

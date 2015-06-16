@@ -9,4 +9,4 @@ services:
             - @xidea_user.user.loader
         calls:
             - [setEventDispatcher, [@event_dispatcher]]
-            - [setTemplating, [@templating]]
+            - [setTemplateManager, [@xidea_base.template_manager]]

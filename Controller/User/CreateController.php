@@ -41,7 +41,7 @@ class CreateController extends AbstractCreateController
         parent::__construct($configuration, $modelManager, $formHandler);
 
         $this->userDirector = $userDirector;
-        
+
         $this->createTemplate = 'user_create';
         $this->createFormTemplate = 'user_create_template';
     }

@@ -31,7 +31,6 @@ class ShowController extends AbstractShowController
         parent::__construct($configuration);
 
         $this->userLoader = $userLoader;
-        
         $this->showTemplate = 'user_show';
     }
 

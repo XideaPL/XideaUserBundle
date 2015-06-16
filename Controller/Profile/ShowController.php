@@ -25,7 +25,6 @@ class ShowController extends AbstractShowController
     /*
      * @var UserLoaderInterface
      */
-
     protected $userLoader;
 
     public function __construct(ConfigurationInterface $configuration, UserLoaderInterface $userLoader)
@@ -33,7 +32,6 @@ class ShowController extends AbstractShowController
         parent::__construct($configuration);
 
         $this->userLoader = $userLoader;
-        
         $this->showTemplate = 'profile_show';
     }
 
