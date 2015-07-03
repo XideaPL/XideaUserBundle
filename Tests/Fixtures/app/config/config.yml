@@ -68,16 +68,14 @@ xidea_user:
         manager: xidea_user.user.manager.default
         loader: xidea_user.user.loader.default
         form:
-            create:
-                factory: xidea_user.user.form.create.factory.default
-                handler: xidea_user.user.form.create.handler.default
+            user:
+                factory: xidea_user.user.form.factory.default
+                handler: xidea_user.user.form.handler.default
                 type: xidea_user
-                name: user_create
+                name: user
     profile:
         enabled: true
         class: Xidea\Bundle\UserBundle\Tests\Fixtures\Model\Profile
         configuration: xidea_user.profile.configuration.default
         factory: xidea_user.profile.factory.default
         manager: xidea_user.profile.manager.default
-    template:
-        configuration: xidea_user.template.configuration.default

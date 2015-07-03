@@ -1,4 +1,4 @@
-{% extends xidea_template('xidea_user', 'user_main') %}
+{% extends xidea_template('user_main') %}
 {% block bundle_title %}
     <h1 class="page-header">{{ 'user_create.title'|trans }}</h1>
 {% endblock %}
@@ -11,7 +11,7 @@
             <!-- /.box-header -->
             <div class="box-body">
                 {% block user_create_form %}
-                    {{ include(xidea_template('xidea_user', 'user_create_form')) }}
+                    {{ include(xidea_template('user_form')) }}
                 {% endblock %}
             </div>
             <!-- /.box-body -->

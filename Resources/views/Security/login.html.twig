@@ -1,4 +1,4 @@
-{% extends xidea_template('xidea_user', 'login_main') %}
+{% extends xidea_template('login_main') %}
 {% block bundle_title %}
     <h1 class="page-header">{{ 'user_login.title'|trans }}</h1>
 {% endblock %}
@@ -12,7 +12,7 @@
                 <!-- /.box-header -->
                 <div class="box-body">
                     {% block login_form %}
-                        {{ include(xidea_template('xidea_user', 'login_form')) }}
+                        {{ include(xidea_template('login_form')) }}
                     {% endblock %}
                 </div>
                 <!-- /.box-body -->

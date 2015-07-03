@@ -28,15 +28,12 @@ class XideaUserExtension extends AbstractExtension
         $loader->load('security.yml');
         $loader->load('form.yml');
         $loader->load('controller.yml');
-        $loader->load('template.yml');
         $loader->load('twig.yml');
         
         $this->loadUserSection($config['user'], $container, $loader);
         $this->loadProfileSection($config['profile'], $container, $loader);
         
-        if (isset($config['template'])) {
-            $this->loadTemplateSection($this->getAlias(), $config['template'], $container, $loader);
-        }
+        $this->loadTemplateSection($config, $container, $loader);
     }
     
     protected function loadUserSection(array $config, ContainerBuilder $container, Loader\YamlFileLoader $loader)
@@ -57,12 +54,12 @@ class XideaUserExtension extends AbstractExtension
     
     protected function loadUserFormSection(array $config, ContainerBuilder $container, Loader\YamlFileLoader $loader)
     {
-        $container->setAlias('xidea_user.user.form.create.factory', $config['create']['factory']);
-        $container->setAlias('xidea_user.user.form.create.handler', $config['create']['handler']);
+        $container->setAlias('xidea_user.user.form.factory', $config['user']['factory']);
+        $container->setAlias('xidea_user.user.form.handler', $config['user']['handler']);
         
-        $container->setParameter('xidea_user.user.form.create.type', $config['create']['type']);
-        $container->setParameter('xidea_user.user.form.create.name', $config['create']['name']);
-        $container->setParameter('xidea_user.user.form.create.validation_groups', $config['create']['validation_groups']);
+        $container->setParameter('xidea_user.user.form.type', $config['user']['type']);
+        $container->setParameter('xidea_user.user.form.name', $config['user']['name']);
+        $container->setParameter('xidea_user.user.form.validation_groups', $config['user']['validation_groups']);
     }
     
     protected function loadProfileSection(array $config, ContainerBuilder $container, Loader\YamlFileLoader $loader)
@@ -92,17 +89,17 @@ class XideaUserExtension extends AbstractExtension
     protected function getDefaultTemplates()
     {
         return [
-            'main' => ['namespace' => '', 'path' => 'main'],
-            'login_main' => ['path' => 'main'],
-            'login' => ['path' => 'Security/login'],
-            'login_form' => ['path' => 'Security/login_form'],
-            'user_main' => ['path' => 'main'],
-            'user_list' => ['path' => 'User/List/list'],
-            'user_show' => ['path' => 'User/Show/show'],
-            'user_create' => ['path' => 'User/Create/create'],
-            'user_create_form' => ['path' => 'User/Main/form'],
-            'profile_main' => ['path' => 'main'],
-            'profile_show' => ['path' => 'Profile/Show/show']
+            'main' => ['path' => '/main'],
+            'login_main' => ['path' => '@XideaUser/main'],
+            'login' => ['path' => '@XideaUser/Security/login'],
+            'login_form' => ['path' => '@XideaUser/Security/login_form'],
+            'user_main' => ['path' => '@XideaUser/main'],
+            'user_list' => ['path' => '@XideaUser/User/List/list'],
+            'user_show' => ['path' => '@XideaUser/User/Show/show'],
+            'user_create' => ['path' => '@XideaUser/User/Create/create'],
+            'user_form' => ['path' => '@XideaUser/User/Main/form'],
+            'profile_main' => ['path' => '@XideaUser/main'],
+            'profile_show' => ['path' => '@XideaUser/Profile/Show/show']
         ];
     }
 }

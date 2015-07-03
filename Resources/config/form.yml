@@ -1,7 +1,7 @@
 parameters:
     xidea_user.user.form.type.class: Xidea\Bundle\UserBundle\Form\Type\UserType
-    xidea_user.user.form.create.factory.default.class: Xidea\Bundle\BaseBundle\Form\Factory\FormFactory
-    xidea_user.user.form.create.handler.default.class: Xidea\Bundle\UserBundle\Form\Handler\UserFormHandler
+    xidea_user.user.form.factory.default.class: Xidea\Bundle\BaseBundle\Form\Factory\FormFactory
+    xidea_user.user.form.handler.default.class: Xidea\Bundle\UserBundle\Form\Handler\UserFormHandler
 
 services:
     xidea_user.user.form.type:
@@ -10,15 +10,15 @@ services:
             - %xidea_user.user.class%
         tags:
             - { name: form.type, alias: "xidea_user" }
-    xidea_user.user.form.create.factory.default:
-        class: %xidea_user.user.form.create.factory.default.class%
+    xidea_user.user.form.factory.default:
+        class: %xidea_user.user.form.factory.default.class%
         arguments:
             - @form.factory
-            - %xidea_user.user.form.create.name%
-            - %xidea_user.user.form.create.type%
-            - %xidea_user.user.form.create.validation_groups%
-    xidea_user.user.form.create.handler.default:
-        class: %xidea_user.user.form.create.handler.default.class%
+            - %xidea_user.user.form.name%
+            - %xidea_user.user.form.type%
+            - %xidea_user.user.form.validation_groups%
+    xidea_user.user.form.handler.default:
+        class: %xidea_user.user.form.handler.default.class%
         arguments:
-            - @xidea_user.user.form.create.factory
+            - @xidea_user.user.form.factory
             - @event_dispatcher

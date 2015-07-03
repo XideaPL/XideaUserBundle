@@ -9,7 +9,6 @@ services:
         class: %xidea_user.user.configuration.default.class%
         arguments:
             - %xidea_user.user.code%
-            - @xidea_user.template.configuration
         tags:
             - { name: xidea_base.configuration }
     xidea_user.user.factory.default:

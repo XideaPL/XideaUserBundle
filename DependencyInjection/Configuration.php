@@ -35,11 +35,6 @@ class Configuration extends AbstractConfiguration
         return $treeBuilder;
     }
     
-    public function getDefaultTemplateNamespace()
-    {
-        return '@XideaUser';
-    }
-    
     protected function addUserSection(ArrayNodeDefinition $node)
     {
         $node
@@ -59,13 +54,13 @@ class Configuration extends AbstractConfiguration
                             ->addDefaultsIfNotSet()
                             ->canBeUnset()
                             ->children()
-                                ->arrayNode('create')
+                                ->arrayNode('user')
                                     ->addDefaultsIfNotSet()
                                     ->children()
-                                        ->scalarNode('factory')->defaultValue('xidea_user.user.form.create.factory.default')->end()
-                                        ->scalarNode('handler')->defaultValue('xidea_user.user.form.create.handler.default')->end()
-                                        ->scalarNode('type')->defaultValue('xidea_user.create')->end()
-                                        ->scalarNode('name')->defaultValue('xidea_user.create_form')->end()
+                                        ->scalarNode('factory')->defaultValue('xidea_user.user.form.factory.default')->end()
+                                        ->scalarNode('handler')->defaultValue('xidea_user.user.form.handler.default')->end()
+                                        ->scalarNode('type')->defaultValue('xidea_user')->end()
+                                        ->scalarNode('name')->defaultValue('user')->end()
                                         ->arrayNode('validation_groups')
                                             ->prototype('scalar')->end()
                                             ->defaultValue(array('Create', 'Default'))
@@ -94,14 +89,6 @@ class Configuration extends AbstractConfiguration
                         ->scalarNode('manager')->defaultValue('xidea_user.profile.manager.default')->end()
                     ->end()
                 ->end()
-            ->end();
-    }
-    
-    protected function addTemplateSection(ArrayNodeDefinition $node)
-    {
-        $node
-            ->children()
-                ->append($this->addTemplateNode($this->getDefaultTemplateNamespace(), $this->getDefaultTemplateEngine(), [], true))
             ->end();
     }
 }
