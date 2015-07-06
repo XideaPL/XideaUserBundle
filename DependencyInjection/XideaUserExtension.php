@@ -89,7 +89,6 @@ class XideaUserExtension extends AbstractExtension
     protected function getDefaultTemplates()
     {
         return [
-            'main' => ['path' => '/main'],
             'login_main' => ['path' => '@XideaUser/main'],
             'login' => ['path' => '@XideaUser/Security/login'],
             'login_form' => ['path' => '@XideaUser/Security/login_form'],
