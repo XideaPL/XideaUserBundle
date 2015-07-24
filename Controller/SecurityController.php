@@ -5,7 +5,8 @@ namespace Xidea\Bundle\UserBundle\Controller;
 use Xidea\Bundle\BaseBundle\Controller\AbstractController,
     Xidea\Bundle\BaseBundle\ConfigurationInterface;
 use Symfony\Component\Security\Core\SecurityContext,
-    Symfony\Component\HttpFoundation\Request;
+    Symfony\Component\HttpFoundation\Request,
+    Symfony\Component\HttpFoundation\Response;
 
 class SecurityController extends AbstractController
 {
@@ -28,6 +29,11 @@ class SecurityController extends AbstractController
         parent::__construct($configuration);
     }
     
+    /**
+     * 
+     * @param Request $request
+     * @return Response
+     */
     public function loginAction(Request $request)
     {
         $session = $request->getSession();
@@ -49,6 +55,11 @@ class SecurityController extends AbstractController
         ), $request);
     }
     
+    /**
+     * 
+     * @param Request $request
+     * @return Response
+     */
     public function loginFormAction(Request $request)
     {
         return $this->onLoginFormView(array(
@@ -57,11 +68,23 @@ class SecurityController extends AbstractController
         ), $request);
     }
     
+    /**
+     * 
+     * @param array $parameters
+     * @param Request|null $request
+     * @return Response
+     */
     protected function onLoginView(array $parameters = array(), Request $request = null)
     {
         return $this->render($this->loginTemplate, $parameters);
     }
 
+    /**
+     * 
+     * @param array $parameters
+     * @param Request $request
+     * @return Response|null
+     */
     protected function onLoginFormView(array $parameters = array(), Request $request = null)
     {
         return $this->render($this->loginFormTemplate, $parameters);

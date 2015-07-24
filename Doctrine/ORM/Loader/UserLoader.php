@@ -10,8 +10,10 @@
 namespace Xidea\Bundle\UserBundle\Doctrine\ORM\Loader;
 
 use Xidea\Component\User\Loader\UserLoaderInterface;
+use Xidea\Bundle\UserBundle\Doctrine\ORM\Repository\UserRepositoryInterface;
+use Xidea\Bundle\BaseBundle\ConfigurationInterface,
+    Xidea\Bundle\BaseBundle\Pagination\PaginatorInterface;
 
-use Xidea\Bundle\UserBundle\Doctrine\ORM\Repository\UserRepository;
 
 /**
  * @author Artur Pszczółka <a.pszczolka@xidea.pl>
@@ -19,18 +21,32 @@ use Xidea\Bundle\UserBundle\Doctrine\ORM\Repository\UserRepository;
 class UserLoader implements UserLoaderInterface
 {
     /*
-     * @var UserRepository
+     * @var UserRepositoryInterface
      */
-    protected $userRepository;
+    protected $repository;
+    
+    /*
+     * @var ConfigurationInterface
+     */
+    protected $configuration;
+    
+    /*
+     * @var PaginatorInterface
+     */
+    protected $paginator;
     
     /**
-     * Constructs a user loader.
+     * Constructs the loader.
      *
-     * @param UserRepository The entity manager
+     * @param UserRepositoryInterface $repository The repository
+     * @param ConfigurationInterface $configuration The configuration
+     * @param PaginatorInterface $paginator The paginator
      */
-    public function __construct(UserRepository $userRepository)
+    public function __construct(UserRepositoryInterface $repository, ConfigurationInterface $configuration, PaginatorInterface $paginator)
     {
-        $this->userRepository = $userRepository;
+        $this->repository = $repository;
+        $this->configuration = $configuration;
+        $this->paginator = $paginator;
     }
 
     /**
@@ -38,7 +54,7 @@ class UserLoader implements UserLoaderInterface
      */
     public function load($id)
     {
-        return $this->userRepository->find($id);
+        return $this->repository->find($id);
     }
 
     /**
@@ -46,7 +62,7 @@ class UserLoader implements UserLoaderInterface
      */
     public function loadAll()
     {
-        return $this->userRepository->findAll();
+        return $this->repository->findAll();
     }
 
     /*
@@ -54,7 +70,7 @@ class UserLoader implements UserLoaderInterface
      */
     public function loadBy(array $criteria, array $orderBy = array(), $limit = null, $offset = null)
     {
-        return $this->userRepository->findBy($criteria, $orderBy, $limit, $offset);
+        return $this->repository->findBy($criteria, $orderBy, $limit, $offset);
     }
     
     /*
@@ -62,7 +78,7 @@ class UserLoader implements UserLoaderInterface
      */
     public function loadOneBy(array $criteria, array $orderBy = array())
     {
-        return $this->userRepository->findOneBy($criteria, $orderBy);
+        return $this->repository->findOneBy($criteria, $orderBy);
     }
     
     /**
@@ -70,6 +86,16 @@ class UserLoader implements UserLoaderInterface
      */
     public function loadOneByUsername($username)
     {
-        return $this->userRepository->findOneByUsername($username);
+        return $this->repository->findOneByUsername($username);
+    }
+    
+    /*
+     * @return PaginationInterface
+     */
+    public function loadByPage($page = 1, $limit = 25)
+    {
+        $qb = $this->repository->findQb();
+        
+        var_dump($this->paginator->paginate($qb, $page, $limit));die;
     }
 }

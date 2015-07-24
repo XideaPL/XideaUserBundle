@@ -1,5 +1,6 @@
 Xidea\Component\User\Model\AbstractUser:
     type: mappedSuperclass
+    repositoryClass: Xidea\Bundle\UserBundle\Doctrine\ORM\Repository\UserRepository
     id:
         id:
             type: integer

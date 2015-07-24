@@ -29,28 +29,41 @@ class CreateController extends AbstractCreateController
      * @var UserDirectorInterface
      */
 
-    protected $userDirector;
+    protected $director;
 
     /*
      * @var UserManagerInterface
      */
     protected $userManager;
 
-    public function __construct(ConfigurationInterface $configuration, UserDirectorInterface $userDirector, UserManagerInterface $modelManager, FormHandlerInterface $formHandler)
+    /**
+     * 
+     * @param ConfigurationInterface $configuration
+     * @param UserDirectorInterface $director
+     * @param UserManagerInterface $modelManager
+     * @param FormHandlerInterface $formHandler
+     */
+    public function __construct(ConfigurationInterface $configuration, UserDirectorInterface $director, UserManagerInterface $modelManager, FormHandlerInterface $formHandler)
     {
         parent::__construct($configuration, $modelManager, $formHandler);
 
-        $this->userDirector = $userDirector;
+        $this->director = $director;
 
         $this->createTemplate = 'user_create';
         $this->createFormTemplate = 'user_create_template';
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function createModel()
     {
-        return $this->userDirector->build();
+        return $this->director->build();
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function onPreCreate($model, Request $request)
     {
         $this->dispatch(UserEvents::PRE_CREATE, $event = new GetUserResponseEvent($model, $request));
@@ -58,6 +71,9 @@ class CreateController extends AbstractCreateController
         return $event->getResponse();
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function onCreateSuccess($model, Request $request)
     {
         $this->dispatch(UserEvents::CREATE_SUCCESS, $event = new GetUserResponseEvent($model, $request));
@@ -71,6 +87,9 @@ class CreateController extends AbstractCreateController
         return $response;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function onCreateCompleted($model, Request $request, Response $response)
     {
         $this->dispatch(UserEvents::CREATE_COMPLETED, $event = new FilterUserResponseEvent($model, $request, $response));

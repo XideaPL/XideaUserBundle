@@ -27,6 +27,11 @@ class ShowController extends AbstractShowController
      */
     protected $userLoader;
 
+    /**
+     * 
+     * @param ConfigurationInterface $configuration
+     * @param UserLoaderInterface $userLoader
+     */
     public function __construct(ConfigurationInterface $configuration, UserLoaderInterface $userLoader)
     {
         parent::__construct($configuration);
@@ -35,6 +40,9 @@ class ShowController extends AbstractShowController
         $this->showTemplate = 'profile_show';
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function loadModel($id)
     {
         $user = $this->userLoader->load($id);
@@ -51,6 +59,9 @@ class ShowController extends AbstractShowController
         return $profile;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function onPreShow($model, Request $request)
     {
         return;

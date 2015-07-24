@@ -14,6 +14,12 @@ use Doctrine\ORM\EntityRepository;
 /**
  * @author Artur Pszczółka <a.pszczolka@xidea.pl>
  */
-class UserRepository extends EntityRepository
+class UserRepository extends EntityRepository implements UserRepositoryInterface
 {
+    public function findQb()
+    {
+        $qb = $this->createQueryBuilder('o');
+        
+        return $qb;
+    }
 }
