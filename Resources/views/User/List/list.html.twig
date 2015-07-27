@@ -4,21 +4,21 @@
 {% endblock %}
 {% block bundle_main %}
     {% block user_main %}
-        <div class="box box-default">
+        <div class="box box-default user-box">
             <div class="box-header">
                 <h3 class="box-title">{{ 'user_list.title'|trans }}</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
                 {% block user_list %}
-                    <div class="user-list">
+                    <div class="user-list table-responsive">
                         <table class="table table-striped user-table">
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>{{ 'user.name'|trans }}</th>
-                                    <th>{{ 'user.created_at'|trans }}</th>
-                                    <th>{{ 'user.updated_at'|trans }}</th>
+                                    <th>{{ xidea_base_sorting(models.sorting, 'user.name'|trans, 'u.name') }}</th>
+                                    <th>{{ xidea_base_sorting(models.sorting, 'user.created_at'|trans, 'u.created_at') }}</th>
+                                    <th>{{ xidea_base_sorting(models.sorting, 'user.updated_at'|trans, 'u.updated_at') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -40,6 +40,7 @@
                                 </tr>
                             </tfoot>
                         </table>
+                        {{ xidea_base_pagination(models) }}
                     </div>
                     <!-- /.user-list -->
                 {% endblock %}

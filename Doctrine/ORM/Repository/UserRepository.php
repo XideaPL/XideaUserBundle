@@ -18,7 +18,7 @@ class UserRepository extends EntityRepository implements UserRepositoryInterface
 {
     public function findQb()
     {
-        $qb = $this->createQueryBuilder('o');
+        $qb = $this->createQueryBuilder('u');
         
         return $qb;
     }

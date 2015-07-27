@@ -96,6 +96,6 @@ class UserLoader implements UserLoaderInterface
     {
         $qb = $this->repository->findQb();
         
-        var_dump($this->paginator->paginate($qb, $page, $limit));die;
+        return $this->paginator->paginate($qb, $page, $limit);
     }
 }
