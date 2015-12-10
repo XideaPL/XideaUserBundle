@@ -10,8 +10,7 @@
 namespace Xidea\Bundle\UserBundle\Model;
 
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
-
-use Xidea\Component\User\Model\AbstractAdvancedUser as BaseAbstractAdvancedUser;
+use Xidea\User\AbstractAdvancedUser as BaseAbstractAdvancedUser;
 /**
  * @author Artur Pszczółka <a.pszczolka@xidea.pl>
  */

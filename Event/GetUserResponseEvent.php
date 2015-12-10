@@ -12,7 +12,7 @@ namespace Xidea\Bundle\UserBundle\Event;
 use Symfony\Component\HttpFoundation\Response,
     Symfony\Component\HttpFoundation\Request;
 
-use Xidea\Component\User\Model\UserInterface;
+use Xidea\User\UserInterface;
 
 /**
  *

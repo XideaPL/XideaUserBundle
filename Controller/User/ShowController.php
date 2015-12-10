@@ -11,36 +11,52 @@ namespace Xidea\Bundle\UserBundle\Controller\User;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Xidea\Component\User\Loader\UserLoaderInterface;
+use Xidea\User\LoaderInterface;
 use Xidea\Bundle\BaseBundle\ConfigurationInterface,
-    Xidea\Bundle\BaseBundle\Controller\AbstractShowController;
-use Xidea\Component\User\Model\UserInterface;
+    Xidea\Bundle\BaseBundle\Controller\AbstractController;
+use Xidea\User\UserInterface;
 
 /**
  * @author Artur Pszczółka <a.pszczolka@xidea.pl>
  */
-class ShowController extends AbstractShowController
+class ShowController extends AbstractController
 {
     /*
-     * @var UserLoaderInterface
+     * @var LoaderInterface
      */
     protected $loader;
     
     /**
      * 
      * @param ConfigurationInterface $configuration
-     * @param UserLoaderInterface $loader
+     * @param LoaderInterface $loader
      */
-    public function __construct(ConfigurationInterface $configuration, UserLoaderInterface $loader)
+    public function __construct(ConfigurationInterface $configuration, LoaderInterface $loader)
     {
         parent::__construct($configuration);
 
         $this->loader = $loader;
-        $this->showTemplate = 'user_show';
+    }
+    
+    /**
+     * 
+     * @param int $id
+     * @param Request $request
+     * @return Response
+     */
+    public function showAction($id, Request $request)
+    {
+        $model = $this->loadModel($id);
+        
+        return $this->render('user_show', array(
+            'model' => $model
+        ));
     }
 
     /**
-     * {@inheritdoc}
+     * @param int $id
+     * 
+     * @return TicketInterface|null
      */
     protected function loadModel($id)
     {
@@ -51,13 +67,5 @@ class ShowController extends AbstractShowController
         }
 
         return $user;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function onPreShow($model, Request $request)
-    {
-        return;
     }
 }

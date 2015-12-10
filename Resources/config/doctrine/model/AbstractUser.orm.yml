@@ -1,4 +1,4 @@
-Xidea\Component\User\Model\AbstractUser:
+Xidea\User\AbstractUser:
     type: mappedSuperclass
     repositoryClass: Xidea\Bundle\UserBundle\Doctrine\ORM\Repository\UserRepository
     id:

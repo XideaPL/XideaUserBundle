@@ -10,35 +10,49 @@
 namespace Xidea\Bundle\UserBundle\Controller\User;
 
 use Symfony\Component\HttpFoundation\Request;
-use Xidea\Component\User\Loader\UserLoaderInterface;
+use Xidea\User\LoaderInterface;
 use Xidea\Bundle\BaseBundle\ConfigurationInterface,
-    Xidea\Bundle\BaseBundle\Controller\AbstractListController;
+    Xidea\Bundle\BaseBundle\Controller\AbstractController;
 
 /**
  * @author Artur Pszczółka <a.pszczolka@xidea.pl>
  */
-class ListController extends AbstractListController
+class ListController extends AbstractController
 {
     /*
-     * @var UserLoaderInterface
+     * @var LoaderInterface
      */
     protected $loader;
 
     /**
      * 
      * @param ConfigurationInterface $configuration
-     * @param UserLoaderInterface $loader
+     * @param LoaderInterface $loader
      */
-    public function __construct(ConfigurationInterface $configuration, UserLoaderInterface $loader)
+    public function __construct(ConfigurationInterface $configuration, LoaderInterface $loader)
     {
         parent::__construct($configuration);
 
         $this->loader = $loader;
-        $this->listTemplate = 'user_list';
     }
     
     /**
-     * {@inheritdoc}
+     * 
+     * @param Request $request
+     * @return Response
+     */
+    public function listAction(Request $request)
+    {
+        $models = $this->loadModels($request);
+        
+        return $this->render('user_list', array(
+            'models' => $models
+        ));
+    }
+    
+    /**
+     * @param Request $request
+     * @return array
      */
     protected function loadModels(Request $request)
     {
@@ -46,13 +60,5 @@ class ListController extends AbstractListController
             $request->query->get($this->configuration->getPaginationParameterName(), 1),
             $this->configuration->getPaginationLimit()
         );
-    }
-    
-    /**
-     * {@inheritdoc}
-     */
-    protected function onPreList($models, Request $request)
-    {
-        return;
     }
 }

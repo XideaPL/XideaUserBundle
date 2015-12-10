@@ -11,6 +11,6 @@ class XideaUserBundle extends AbstractBundle
 {    
     protected function getModelNamespace()
     {
-        return 'Xidea\Component\User\Model';
+        return 'Xidea\User';
     }
 }

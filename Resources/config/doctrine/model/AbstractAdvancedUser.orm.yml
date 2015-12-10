@@ -1,4 +1,4 @@
-Xidea\Component\User\Model\AbstractAdvancedUser:
+Xidea\User\AbstractAdvancedUser:
     type: mappedSuperclass
     fields:
         email:
@@ -27,6 +27,6 @@ Xidea\Component\User\Model\AbstractAdvancedUser:
             nullable: true
     oneToOne:
         profile:
-            targetEntity: Xidea\Component\User\Model\ProfileInterface
+            targetEntity: Xidea\User\ProfileInterface
             inversedBy: user
             cascade: ["persist"]

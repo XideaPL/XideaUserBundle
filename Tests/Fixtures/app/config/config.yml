@@ -56,9 +56,9 @@ doctrine:
                         prefix: Xidea\Bundle\UserBundle\Tests\Fixtures\Model
                         is_bundle: false
         resolve_target_entities:
-            Xidea\Component\User\Model\UserInterface: Xidea\Bundle\UserBundle\Tests\Fixtures\Model\User
-            Xidea\Component\User\Model\AdvancedUserInterface: Xidea\Bundle\UserBundle\Tests\Fixtures\Model\User
-            Xidea\Component\User\Model\ProfileInterface: Xidea\Bundle\UserBundle\Tests\Fixtures\Model\Profile
+            Xidea\User\UserInterface: Xidea\Bundle\UserBundle\Tests\Fixtures\Model\User
+            Xidea\User\AdvancedUserInterface: Xidea\Bundle\UserBundle\Tests\Fixtures\Model\User
+            Xidea\User\ProfileInterface: Xidea\Bundle\UserBundle\Tests\Fixtures\Model\Profile
             
 xidea_user:
     user:

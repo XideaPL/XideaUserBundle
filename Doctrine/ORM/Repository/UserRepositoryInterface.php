@@ -17,7 +17,7 @@ interface UserRepositoryInterface
     /*
      * @param int $id
      * 
-     * @return \Xidea\Component\User\Model\UserInterface
+     * @return \Xidea\User\UserInterface
      */
     function find($id);
     

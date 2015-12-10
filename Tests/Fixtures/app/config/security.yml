@@ -1,6 +1,6 @@
 security:
     encoders:
-        Xidea\Component\User\Model\UserInterface:
+        Xidea\User\UserInterface:
             algorithm: sha512
             encode_as_base64: false
             iterations: 1

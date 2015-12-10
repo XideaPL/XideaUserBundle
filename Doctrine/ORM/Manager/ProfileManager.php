@@ -14,13 +14,13 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface,
 
 use Doctrine\ORM\EntityManager;
 
-use Xidea\Component\User\Manager\ProfileManagerInterface,
-    Xidea\Component\User\Model\ProfileInterface;
+use Xidea\User\Profile\ManagerInterface,
+    Xidea\User\ProfileInterface;
 
 /**
  * @author Artur Pszczółka <a.pszczolka@xidea.pl>
  */
-class ProfileManager implements ProfileManagerInterface
+class ProfileManager implements ManagerInterface
 {
     /*
      * @var EntityManagerInterface

@@ -10,8 +10,7 @@
 namespace Xidea\Bundle\UserBundle\Model;
 
 use Symfony\Component\Security\Core\User\UserInterface;
-
-use Xidea\Component\User\Model\AbstractUser as BaseAbstractUser;
+use Xidea\User\AbstractUser as BaseAbstractUser;
 
 /**
  */

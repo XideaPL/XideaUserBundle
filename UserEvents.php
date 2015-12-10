@@ -9,11 +9,11 @@
 
 namespace Xidea\Bundle\UserBundle;
 
-use Xidea\Component\User\UserEvents as BaseUserEvents;
+use Xidea\User\Events;
 
 /**
  * @author Artur Pszczółka <a.pszczolka@xidea.pl>
  */
-final class UserEvents extends BaseUserEvents
+final class UserEvents extends Events
 {
 }

@@ -9,7 +9,7 @@
 
 namespace Xidea\Bundle\UserBundle\Doctrine\ORM\Loader;
 
-use Xidea\Component\User\Loader\UserLoaderInterface;
+use Xidea\User\LoaderInterface;
 use Xidea\Bundle\UserBundle\Doctrine\ORM\Repository\UserRepositoryInterface;
 use Xidea\Bundle\BaseBundle\ConfigurationInterface,
     Xidea\Bundle\BaseBundle\Pagination\PaginatorInterface;
@@ -18,7 +18,7 @@ use Xidea\Bundle\BaseBundle\ConfigurationInterface,
 /**
  * @author Artur Pszczółka <a.pszczolka@xidea.pl>
  */
-class UserLoader implements UserLoaderInterface
+class UserLoader implements LoaderInterface
 {
     /*
      * @var UserRepositoryInterface

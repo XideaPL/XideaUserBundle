@@ -11,41 +11,57 @@ namespace Xidea\Bundle\UserBundle\Controller\Profile;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Xidea\Component\User\Loader\UserLoaderInterface;
+use Xidea\User\LoaderInterface;
 use Xidea\Bundle\BaseBundle\ConfigurationInterface,
-    Xidea\Bundle\BaseBundle\Controller\AbstractShowController;
-use Xidea\Component\User\Model\UserInterface,
-    Xidea\Component\User\Model\ProfileInterface;
+    Xidea\Bundle\BaseBundle\Controller\AbstractController;
+use Xidea\User\UserInterface,
+    Xidea\User\ProfileInterface;
 
 /**
  * @author Artur Pszczółka <a.pszczolka@xidea.pl>
  */
-class ShowController extends AbstractShowController
+class ShowController extends AbstractController
 {
     /*
-     * @var UserLoaderInterface
+     * @var LoaderInterface
      */
-    protected $userLoader;
+    protected $loader;
 
     /**
      * 
      * @param ConfigurationInterface $configuration
-     * @param UserLoaderInterface $userLoader
+     * @param LoaderInterface $loader
      */
-    public function __construct(ConfigurationInterface $configuration, UserLoaderInterface $userLoader)
+    public function __construct(ConfigurationInterface $configuration, LoaderInterface $loader)
     {
         parent::__construct($configuration);
 
-        $this->userLoader = $userLoader;
-        $this->showTemplate = 'profile_show';
+        $this->loader = $loader;
+    }
+    
+    /**
+     * 
+     * @param int $id
+     * @param Request $request
+     * @return Response
+     */
+    public function showAction($id, Request $request)
+    {
+        $model = $this->loadModel($id);
+        
+        return $this->render('profile_show', array(
+            'model' => $model
+        ));
     }
 
     /**
-     * {@inheritdoc}
+     * @param int $id
+     * 
+     * @return TicketInterface|null
      */
     protected function loadModel($id)
     {
-        $user = $this->userLoader->load($id);
+        $user = $this->loader->load($id);
 
         if (!$user instanceof UserInterface) {
             throw new NotFoundHttpException('user.not_found');
@@ -57,13 +73,5 @@ class ShowController extends AbstractShowController
         }
 
         return $profile;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function onPreShow($model, Request $request)
-    {
-        return;
     }
 }

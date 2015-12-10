@@ -48,11 +48,11 @@ class SecurityController extends AbstractController
             $session->remove(SecurityContext::AUTHENTICATION_ERROR);
         }
 
-        return $this->onLoginView(array(
+        return $this->render('login', array(
                 // last username entered by the user
                 'last_username' => $session->get(SecurityContext::LAST_USERNAME),
                 'error'         => $error,
-        ), $request);
+        ));
     }
     
     /**
@@ -62,31 +62,9 @@ class SecurityController extends AbstractController
      */
     public function loginFormAction(Request $request)
     {
-        return $this->onLoginFormView(array(
+        return $this->render('login_form', array(
                 'last_username' => '',
                 'error'         => '',
-        ), $request);
-    }
-    
-    /**
-     * 
-     * @param array $parameters
-     * @param Request|null $request
-     * @return Response
-     */
-    protected function onLoginView(array $parameters = array(), Request $request = null)
-    {
-        return $this->render($this->loginTemplate, $parameters);
-    }
-
-    /**
-     * 
-     * @param array $parameters
-     * @param Request $request
-     * @return Response|null
-     */
-    protected function onLoginFormView(array $parameters = array(), Request $request = null)
-    {
-        return $this->render($this->loginFormTemplate, $parameters);
+        ));
     }
 }

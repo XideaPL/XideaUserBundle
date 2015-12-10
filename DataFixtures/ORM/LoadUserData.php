@@ -96,7 +96,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
         $admin = $userFactory->create();
         $admin->setUsername('admin');
         $admin->setPlainPassword('admin');
-        if($admin instanceof \Xidea\Component\User\Model\AdvancedUserInterface)
+        if($admin instanceof \Xidea\User\AdvancedUserInterface)
         {
             $admin->setEmail('artur.pszczolka@xidea.pl');
             $admin->setIsEnabled(true);
@@ -112,7 +112,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
         $johndoe = $userFactory->create();
         $johndoe->setUsername('johndoe');
         $johndoe->setPlainPassword('johndoe');
-        if($johndoe instanceof \Xidea\Component\User\Model\AdvancedUserInterface)
+        if($johndoe instanceof \Xidea\User\AdvancedUserInterface)
         {
             $johndoe->setEmail('test@xidea.pl');
             $johndoe->setIsEnabled(true);
@@ -128,7 +128,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
         $janedoe = $userFactory->create();
         $janedoe->setUsername('janedoe');
         $janedoe->setPlainPassword('janedoe');
-        if($janedoe instanceof \Xidea\Component\User\Model\AdvancedUserInterface)
+        if($janedoe instanceof \Xidea\User\AdvancedUserInterface)
         {
             $janedoe->setEmail('test1@xidea.pl');
             $janedoe->setIsEnabled(true);

@@ -1,2 +1,4 @@
 XideaUserBundle
 ===============
+
+IN DEVELOPMENT

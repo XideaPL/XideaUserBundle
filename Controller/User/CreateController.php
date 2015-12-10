@@ -11,10 +11,10 @@ namespace Xidea\Bundle\UserBundle\Controller\User;
 
 use Symfony\Component\HttpFoundation\Request,
     Symfony\Component\HttpFoundation\Response;
-use Xidea\Component\User\Builder\UserDirectorInterface,
-    Xidea\Component\User\Manager\UserManagerInterface;
+use Xidea\User\DirectorInterface,
+    Xidea\User\ManagerInterface;
 use Xidea\Bundle\BaseBundle\ConfigurationInterface,
-    Xidea\Bundle\BaseBundle\Controller\AbstractCreateController,
+    Xidea\Bundle\BaseBundle\Controller\AbstractController,
     Xidea\Bundle\BaseBundle\Form\Handler\FormHandlerInterface;
 use Xidea\Bundle\UserBundle\UserEvents,
     Xidea\Bundle\UserBundle\Event\GetUserResponseEvent,
@@ -23,16 +23,16 @@ use Xidea\Bundle\UserBundle\UserEvents,
 /**
  * @author Artur Pszczółka <a.pszczolka@xidea.pl>
  */
-class CreateController extends AbstractCreateController
+class CreateController extends AbstractController
 {
     /*
-     * @var UserDirectorInterface
+     * @var DirectorInterface
      */
 
     protected $director;
 
     /*
-     * @var UserManagerInterface
+     * @var ManagerInterface
      */
     protected $userManager;
 
@@ -40,60 +40,80 @@ class CreateController extends AbstractCreateController
      * 
      * @param ConfigurationInterface $configuration
      * @param UserDirectorInterface $director
-     * @param UserManagerInterface $modelManager
+     * @param UserManagerInterface $manager
      * @param FormHandlerInterface $formHandler
      */
-    public function __construct(ConfigurationInterface $configuration, UserDirectorInterface $director, UserManagerInterface $modelManager, FormHandlerInterface $formHandler)
+    public function __construct(ConfigurationInterface $configuration, DirectorInterface $director, ManagerInterface $manager, FormHandlerInterface $formHandler)
     {
-        parent::__construct($configuration, $modelManager, $formHandler);
+        parent::__construct($configuration);
 
         $this->director = $director;
-
-        $this->createTemplate = 'user_create';
-        $this->createFormTemplate = 'user_create_template';
+        $this->manager = $manager;
+        $this->formHandler = $formHandler;
     }
-
+    
     /**
-     * {@inheritdoc}
+     * 
+     * @param Request $request
+     * @return Response
      */
-    protected function createModel()
+    public function createAction(Request $request)
     {
-        return $this->director->build();
-    }
+        $model = $this->director->build();
 
-    /**
-     * {@inheritdoc}
-     */
-    protected function onPreCreate($model, Request $request)
-    {
-        $this->dispatch(UserEvents::PRE_CREATE, $event = new GetUserResponseEvent($model, $request));
-
-        return $event->getResponse();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function onCreateSuccess($model, Request $request)
-    {
-        $this->dispatch(UserEvents::CREATE_SUCCESS, $event = new GetUserResponseEvent($model, $request));
-
-        if (null === $response = $event->getResponse()) {
-            $response = $this->redirectToRoute('xidea_user_show', array(
-                'id' => $model->getId()
-            ));
+        $event = $this->dispatch(UserEvents::PRE_CREATE, $event = new GetUserResponseEvent($model, $request));
+        if ($event->getResponse() !== null) {
+            return $event->getResponse();
         }
 
-        return $response;
+        $form = $this->createForm($model);
+        if ($this->formHandler->handle($form, $request)) {
+            if ($this->manager->save($model)) {
+                $event = $this->dispatch(UserEvents::CREATE_SUCCESS, $event = new GetUserResponseEvent($model, $request));
+                
+                if (null === $response = $event->getResponse()) {
+                    $response = $this->redirectToRoute('xidea_user_show', array(
+                        'id' => $model->getId()
+                    ));
+                }
+
+                $event = $this->dispatch(UserEvents::CREATE_COMPLETED, $event = new FilterUserResponseEvent($model, $request, $response));
+                
+                return $event->getResponse();
+            }
+        }
+
+        return $this->render('user_create', array(
+            'form' => $form->createView()
+        ));
     }
 
     /**
-     * {@inheritdoc}
+     * 
+     * @param Request $request
+     * @return Response
      */
-    protected function onCreateCompleted($model, Request $request, Response $response)
+    public function createFormAction(Request $request)
     {
-        $this->dispatch(UserEvents::CREATE_COMPLETED, $event = new FilterUserResponseEvent($model, $request, $response));
-        
-        return $event->getResponse();
+        $form = $this->createForm();
+
+        return $this->render('user_create_form', array(
+            'form' => $form->createView()
+        ));
+    }
+    
+    /**
+     * 
+     * @param mixed $model
+     * @return \Symfony\Component\Form\FormInterface
+     */
+    protected function createForm($model = null)
+    {
+        $form = $this->formHandler->createForm();
+        if (null !== $model) {
+            $form->setData($model);
+        }
+
+        return $form;
     }
 }
