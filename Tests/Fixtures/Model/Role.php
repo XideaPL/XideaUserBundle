@@ -9,17 +9,11 @@
 
 namespace Xidea\Bundle\UserBundle\Tests\Fixtures\Model;
 
-use Xidea\Bundle\UserBundle\Model\AbstractAdvancedUser;
-use Doctrine\Common\Collections\ArrayCollection;
+use Xidea\User\AbstractRole;
 
 /**
  * @author Artur Pszczółka <artur.pszczolka@xidea.pl>
  */
-class User extends AbstractAdvancedUser
+class Role extends AbstractRole
 {
-    public function __construct()
-    {
-        $this->salt = md5(uniqid(null, true));
-        $this->roles = new ArrayCollection();
-    }
 }

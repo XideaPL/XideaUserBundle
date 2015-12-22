@@ -29,6 +29,7 @@ class Configuration extends AbstractConfiguration
         $rootNode = $treeBuilder->root($this->alias);
 
         $this->addUserSection($rootNode);
+        $this->addRoleSection($rootNode);
         $this->addProfileSection($rootNode);
         $this->addTemplateSection($rootNode);
 
@@ -69,6 +70,24 @@ class Configuration extends AbstractConfiguration
                                 ->end()
                             ->end()
                         ->end()
+                    ->end()
+                ->end()
+            ->end();
+    }
+    
+    protected function addRoleSection(ArrayNodeDefinition $node)
+    {
+        $node
+            ->children()
+                ->arrayNode('role')
+                    ->canBeEnabled()
+                    ->canBeUnset()
+                    ->children()
+                        ->scalarNode('code')->defaultValue('xidea_role')->end()
+                        ->scalarNode('class')->isRequired()->cannotBeEmpty()->end()
+                        ->scalarNode('configuration')->isRequired()->cannotBeEmpty()->end()
+                        ->scalarNode('factory')->defaultValue('xidea_user.role.factory.default')->end()
+                        ->scalarNode('manager')->defaultValue('xidea_user.role.manager.default')->end()
                     ->end()
                 ->end()
             ->end();

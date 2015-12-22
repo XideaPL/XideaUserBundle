@@ -1,0 +1,15 @@
+parameters:
+    xidea_user.role.configuration.default.class: Xidea\Bundle\BaseBundle\Configuration
+    xidea_user.role.factory.default.class: Xidea\Base\Model\Factory\DefaultFactory
+  
+services:
+    xidea_user.role.configuration.default:
+        class: %xidea_user.role.configuration.default.class%
+        arguments:
+            - %xidea_user.role.code%
+        tags:
+            - { name: xidea_base.configuration }
+    xidea_user.role.factory.default:
+        class: %xidea_user.role.factory.default.class%
+        arguments:
+            - %xidea_user.role.class%

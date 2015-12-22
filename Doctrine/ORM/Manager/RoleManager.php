@@ -13,29 +13,29 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 use Doctrine\ORM\EntityManager;
 
-use Xidea\User\Profile\ManagerInterface,
-    Xidea\User\ProfileInterface;
+use Xidea\User\Role\ManagerInterface,
+    Xidea\User\RoleInterface;
 
 /**
  * @author Artur Pszczółka <a.pszczolka@xidea.pl>
  */
-class ProfileManager implements ManagerInterface
+class RoleManager implements ManagerInterface
 {
     /*
-     * @var EntityManager
+     * @var EntityManagerInterface
      */
     protected $entityManager;
-    
+
     /*
      * @var EventDispatcherInterface
      */
     protected $eventDispatcher;
 
     /**
-     * Constructs a profile manager.
+     * Constructs a role manager.
      *
      * @param EntityManager $entityManager The entity manager
-     * @param EventDispatcherInterface $eventDispatcher The event dispatcher
+     * @param EventDispatcherInterface $eventDispatcher The entity manager
      */
     public function __construct(EntityManager $entityManager, EventDispatcherInterface $eventDispatcher)
     {
@@ -46,32 +46,30 @@ class ProfileManager implements ManagerInterface
     /**
      * {@inheritdoc}
      */
-    public function save(ProfileInterface $profile)
+    public function save(RoleInterface $role)
     {
-        $this->entityManager->persist($profile);
+        $this->entityManager->persist($role);
         $this->entityManager->flush();
 
-        return $profile->getId();
+        return $role->getId();
     }
     
     /**
      * {@inheritdoc}
      */    
-    public function update(ProfileInterface $profile)
+    public function update(RoleInterface $role)
     {  
-        $this->updatePassword($profile);
-        
-        $this->entityManager->persist($profile);
+        $this->entityManager->persist($role);
         $this->entityManager->flush();
 
-        return $profile->getId();
+        return $role->getId();
     }
 
     /**
      * {@inheritdoc}
      */
-    public function delete(ProfileInterface $profile)
+    public function delete(RoleInterface $role)
     {
-        $this->entityManager->remove($profile);
+        $this->entityManager->remove($role);
     }
 }

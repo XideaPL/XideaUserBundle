@@ -63,7 +63,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
     /**
      * Returns a user factory.
      * 
-     * @return \Xidea\Component\Base\Model\ModelFactory The user factory
+     * @return \Xidea\Base\Model\Factory\DefaultFactory The user factory
      */
     protected function getUserFactory()
     {
@@ -71,9 +71,19 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
     }
     
     /**
+     * Returns a role factory.
+     * 
+     * @return \Xidea\Base\Model\Factory\DefaultFactory The role factory
+     */
+    protected function getRoleFactory()
+    {
+        return $this->container->get('xidea_user.role.factory');
+    }
+    
+    /**
      * Returns a user factory.
      * 
-     * @return \Xidea\Component\Base\Model\ModelFactory The user factory
+     * @return \Xidea\Base\Model\Factory\DefaultFactory The profile factory
      */
     protected function getProfileFactory()
     {
@@ -106,7 +116,9 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
                 $admin->setProfile($profile);
             }
         }
-        $admin->addRole('ROLE_SUPER_ADMIN');
+        $admin->setRoles([
+            $this->getReference('user-role-admin')
+        ]);
         $this->setReference('user-admin', $admin);
         
         $johndoe = $userFactory->create();
@@ -122,7 +134,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
                 $johndoe->setProfile($profile);
             }
         }
-        $johndoe->addRole('ROLE_USER');
+        $johndoe->addRole($this->getReference('user-role-user'));
         $this->setReference('user-johndoe', $johndoe);
         
         $janedoe = $userFactory->create();
@@ -138,7 +150,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
                 $janedoe->setProfile($profile);
             }
         }
-        $janedoe->addRole('ROLE_USER');
+        $janedoe->addRole($this->getReference('user-role-user'));
         $this->setReference('user-janedoe', $janedoe);
         
         return array(

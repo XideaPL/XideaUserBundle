@@ -1,0 +1,9 @@
+parameters:
+    xidea_user.role.manager.default.class: Xidea\Bundle\UserBundle\Doctrine\ORM\Manager\RoleManager
+  
+services:
+    xidea_user.role.manager.default:
+        class: %xidea_user.role.manager.default.class%
+        arguments:
+            - @doctrine.orm.entity_manager
+            - @event_dispatcher

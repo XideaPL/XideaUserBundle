@@ -31,6 +31,7 @@ class XideaUserExtension extends AbstractExtension
         $loader->load('twig.yml');
         
         $this->loadUserSection($config['user'], $container, $loader);
+        $this->loadRoleSection($config['role'], $container, $loader);
         $this->loadProfileSection($config['profile'], $container, $loader);
         
         $this->loadTemplateSection($config, $container, $loader);
@@ -60,6 +61,18 @@ class XideaUserExtension extends AbstractExtension
         $container->setParameter('xidea_user.user.form.type', $config['user']['type']);
         $container->setParameter('xidea_user.user.form.name', $config['user']['name']);
         $container->setParameter('xidea_user.user.form.validation_groups', $config['user']['validation_groups']);
+    }
+    
+    protected function loadRoleSection(array $config, ContainerBuilder $container, Loader\YamlFileLoader $loader)
+    {           
+        $loader->load('role.yml');
+        $loader->load('role_orm.yml');
+
+        $container->setParameter('xidea_user.role.code', $config['code']);
+        $container->setParameter('xidea_user.role.class', $config['class']);
+        $container->setAlias('xidea_user.role.configuration', $config['configuration']);
+        $container->setAlias('xidea_user.role.factory', $config['factory']);
+        $container->setAlias('xidea_user.role.manager', $config['manager']);
     }
     
     protected function loadProfileSection(array $config, ContainerBuilder $container, Loader\YamlFileLoader $loader)

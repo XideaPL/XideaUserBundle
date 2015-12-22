@@ -1,6 +1,6 @@
 parameters:
     xidea_user.user.configuration.default.class: Xidea\Bundle\BaseBundle\Configuration
-    xidea_user.user.factory.default.class: Xidea\Component\Base\Factory\ModelFactory
+    xidea_user.user.factory.default.class: Xidea\Base\Model\Factory\DefaultFactory
     xidea_user.user.builder.default.class: Xidea\User\Builder\DefaultBuilder
     xidea_user.user.director.default.class: Xidea\User\Builder\DefaultDirector
   

@@ -1,6 +1,6 @@
 parameters:
     xidea_user.profile.configuration.default.class: Xidea\Bundle\BaseBundle\Configuration
-    xidea_user.profile.factory.default.class: Xidea\Component\Base\Factory\ModelFactory
+    xidea_user.profile.factory.default.class: Xidea\Base\Model\Factory\DefaultFactory
   
 services:
     xidea_user.profile.configuration.default:

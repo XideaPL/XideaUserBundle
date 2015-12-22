@@ -49,6 +49,7 @@ doctrine:
         entity_managers:
             default:
                 auto_mapping: true
+                naming_strategy: doctrine.orm.naming_strategy.underscore
                 mappings:
                     XideaUserBundleTest:
                         type: yml
@@ -58,6 +59,7 @@ doctrine:
         resolve_target_entities:
             Xidea\User\UserInterface: Xidea\Bundle\UserBundle\Tests\Fixtures\Model\User
             Xidea\User\AdvancedUserInterface: Xidea\Bundle\UserBundle\Tests\Fixtures\Model\User
+            Xidea\User\RoleInterface: Xidea\Bundle\UserBundle\Tests\Fixtures\Model\Role
             Xidea\User\ProfileInterface: Xidea\Bundle\UserBundle\Tests\Fixtures\Model\Profile
             
 xidea_user:
@@ -73,6 +75,10 @@ xidea_user:
                 handler: xidea_user.user.form.handler.default
                 type: xidea_user
                 name: user
+    role:
+        class: Xidea\Bundle\UserBundle\Tests\Fixtures\Model\Role
+        configuration: xidea_user.role.configuration.default
+        factory: xidea_user.role.factory.default
     profile:
         enabled: true
         class: Xidea\Bundle\UserBundle\Tests\Fixtures\Model\Profile
