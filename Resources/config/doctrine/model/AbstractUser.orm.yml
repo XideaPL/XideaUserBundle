@@ -24,6 +24,9 @@ Xidea\User\AbstractUser:
                 joinColumns:
                     user_id:
                         referencedColumnName: id
+                        onDelete: CASCADE
                 inverseJoinColumns:
                     role_id:
                         referencedColumnName: id
+                        onDelete: CASCADE
+            cascade: ["persist"]
