@@ -26,8 +26,6 @@ class XideaUserExtension extends AbstractExtension
         $loader->load('user.yml');
         $loader->load('user_orm.yml');
         $loader->load('security.yml');
-        $loader->load('form.yml');
-        $loader->load('controller.yml');
         $loader->load('twig.yml');
         
         $this->loadUserSection($config['user'], $container, $loader);
@@ -64,7 +62,13 @@ class XideaUserExtension extends AbstractExtension
     }
     
     protected function loadRoleSection(array $config, ContainerBuilder $container, Loader\YamlFileLoader $loader)
-    {           
+    {          
+        $container->setParameter('xidea_user.role.enabled', $config['enabled']);
+        
+        if(!$config['enabled']) {
+            return false;
+        }
+        
         $loader->load('role.yml');
         $loader->load('role_orm.yml');
 
@@ -85,7 +89,6 @@ class XideaUserExtension extends AbstractExtension
             
         $loader->load('profile.yml');
         $loader->load('profile_orm.yml');
-        $loader->load('profile_controller.yml');
 
         $container->setParameter('xidea_user.profile.code', $config['code']);
         $container->setParameter('xidea_user.profile.class', $config['class']);

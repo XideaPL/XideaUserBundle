@@ -9,13 +9,13 @@
 
 namespace Xidea\Bundle\UserBundle\Model;
 
-use Symfony\Component\Security\Core\User\UserInterface;
 use Xidea\User\AbstractUser as BaseAbstractUser;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  */
 abstract class AbstractUser extends BaseAbstractUser implements UserInterface
-{
+{    
     /**
      * @inheritDoc
      */

@@ -17,8 +17,8 @@ use Xidea\Bundle\BaseBundle\ConfigurationInterface,
     Xidea\Bundle\BaseBundle\Controller\AbstractController,
     Xidea\Bundle\BaseBundle\Form\Handler\FormHandlerInterface;
 use Xidea\Bundle\UserBundle\UserEvents,
-    Xidea\Bundle\UserBundle\Event\GetUserResponseEvent,
-    Xidea\Bundle\UserBundle\Event\FilterUserResponseEvent;
+    Xidea\Bundle\UserBundle\Event\GetResponseEvent,
+    Xidea\Bundle\UserBundle\Event\FilterResponseEvent;
 
 /**
  * @author Artur Pszczółka <a.pszczolka@xidea.pl>
@@ -61,7 +61,7 @@ class CreateController extends AbstractController
     {
         $model = $this->director->build();
 
-        $event = $this->dispatch(UserEvents::PRE_CREATE, $event = new GetUserResponseEvent($model, $request));
+        $event = $this->dispatch(UserEvents::PRE_CREATE, $event = new GetResponseEvent($model, $request));
         if ($event->getResponse() !== null) {
             return $event->getResponse();
         }
@@ -69,7 +69,7 @@ class CreateController extends AbstractController
         $form = $this->createForm($model);
         if ($this->formHandler->handle($form, $request)) {
             if ($this->manager->save($model)) {
-                $event = $this->dispatch(UserEvents::CREATE_SUCCESS, $event = new GetUserResponseEvent($model, $request));
+                $event = $this->dispatch(UserEvents::CREATE_SUCCESS, $event = new GetResponseEvent($model, $request));
                 
                 if (null === $response = $event->getResponse()) {
                     $response = $this->redirectToRoute('xidea_user_show', array(
@@ -77,7 +77,7 @@ class CreateController extends AbstractController
                     ));
                 }
 
-                $event = $this->dispatch(UserEvents::CREATE_COMPLETED, $event = new FilterUserResponseEvent($model, $request, $response));
+                $event = $this->dispatch(UserEvents::CREATE_COMPLETED, $event = new FilterResponseEvent($model, $request, $response));
                 
                 return $event->getResponse();
             }

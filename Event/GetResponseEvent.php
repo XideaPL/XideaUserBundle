@@ -18,7 +18,7 @@ use Xidea\User\UserInterface;
  *
  * @author Artur Pszczółka <a.pszczolka@xidea.pl>
  */
-class GetUserResponseEvent extends UserEvent
+class GetResponseEvent extends UserEvent
 {
 
     private $response;

@@ -57,10 +57,10 @@ doctrine:
                         prefix: Xidea\Bundle\UserBundle\Tests\Fixtures\Model
                         is_bundle: false
         resolve_target_entities:
-            Xidea\User\UserInterface: Xidea\Bundle\UserBundle\Tests\Fixtures\Model\User
-            Xidea\User\AdvancedUserInterface: Xidea\Bundle\UserBundle\Tests\Fixtures\Model\User
-            Xidea\User\RoleInterface: Xidea\Bundle\UserBundle\Tests\Fixtures\Model\Role
-            Xidea\User\ProfileInterface: Xidea\Bundle\UserBundle\Tests\Fixtures\Model\Profile
+            Xidea\Bundle\UserBundle\Model\AbstractUser: Xidea\Bundle\UserBundle\Tests\Fixtures\Model\User
+            Xidea\Bundle\UserBundle\Model\AbstractAdvancedUser: Xidea\Bundle\UserBundle\Tests\Fixtures\Model\User
+            Xidea\Bundle\UserBundle\Model\AbstractRole: Xidea\Bundle\UserBundle\Tests\Fixtures\Model\Role
+            Xidea\Bundle\UserBundle\Model\AbstractProfile: Xidea\Bundle\UserBundle\Tests\Fixtures\Model\Profile
             
 xidea_user:
     user:

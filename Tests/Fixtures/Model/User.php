@@ -22,4 +22,12 @@ class User extends AbstractAdvancedUser
         $this->salt = md5(uniqid(null, true));
         $this->roles = new ArrayCollection();
     }
+    
+    /**
+     * @inheritDoc
+     */
+    public function getRoles()
+    {
+        return $this->roles->toArray();
+    }
 }

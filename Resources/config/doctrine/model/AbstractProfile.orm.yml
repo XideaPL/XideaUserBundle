@@ -1,4 +1,4 @@
-Xidea\User\AbstractProfile:
+Xidea\Bundle\UserBundle\Model\AbstractProfile:
     type: mappedSuperclass
     id:
         id:
@@ -10,5 +10,5 @@ Xidea\User\AbstractProfile:
             length: 255
     oneToOne:
         user:
-            targetEntity: Xidea\User\AdvancedUserInterface
+            targetEntity: Xidea\Bundle\UserBundle\Model\AbstractAdvancedUser
             mappedBy: profile

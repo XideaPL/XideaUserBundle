@@ -18,7 +18,7 @@ use Xidea\User\UserInterface;
  *
  * @author Artur Pszczółka <a.pszczolka@xidea.pl>
  */
-class FilterUserResponseEvent extends UserEvent
+class FilterResponseEvent extends UserEvent
 {
 
     private $response;

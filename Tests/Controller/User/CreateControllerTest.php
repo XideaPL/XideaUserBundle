@@ -15,6 +15,7 @@ class CreateControllerTest extends ControllerTestCase
 {
     public function testCreateAction()
     {
+        //$client = $this->logIn();
         $client = static::createClient();
         
         $crawler = $client->request('GET', $client->getContainer()->get('router')->generate('xidea_user_create'));

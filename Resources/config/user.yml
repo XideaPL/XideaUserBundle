@@ -1,10 +1,20 @@
 parameters:
+    #services
     xidea_user.user.configuration.default.class: Xidea\Bundle\BaseBundle\Configuration
     xidea_user.user.factory.default.class: Xidea\Base\Model\Factory\DefaultFactory
     xidea_user.user.builder.default.class: Xidea\User\Builder\DefaultBuilder
     xidea_user.user.director.default.class: Xidea\User\Builder\DefaultDirector
+    #controllers
+    xidea_user.controller.list.class: Xidea\Bundle\UserBundle\Controller\User\ListController
+    xidea_user.controller.show.class: Xidea\Bundle\UserBundle\Controller\User\ShowController
+    xidea_user.controller.create.class: Xidea\Bundle\UserBundle\Controller\User\CreateController
+    #forms
+    xidea_user.user.form.type.class: Xidea\Bundle\UserBundle\Form\Type\UserType
+    xidea_user.user.form.factory.default.class: Xidea\Bundle\BaseBundle\Form\Factory\FormFactory
+    xidea_user.user.form.handler.default.class: Xidea\Bundle\UserBundle\Form\Handler\UserFormHandler
   
 services:
+    #services
     xidea_user.user.configuration.default:
         class: %xidea_user.user.configuration.default.class%
         arguments:
@@ -23,3 +33,57 @@ services:
         class: %xidea_user.user.director.default.class%
         arguments:
             - @xidea_user.user.builder
+    #controllers
+    xidea_user.controller.list:
+        class: %xidea_user.controller.list.class%
+        arguments:
+            - @xidea_user.user.configuration
+            - @xidea_user.user.loader
+        calls:
+            - [setEventDispatcher, [@event_dispatcher]]
+            - [setTemplateManager, [@xidea_base.template_manager]]
+    xidea_user.controller.show:
+        class: %xidea_user.controller.show.class%
+        arguments:
+            - @xidea_user.user.configuration
+            - @xidea_user.user.loader
+        calls:
+            - [setEventDispatcher, [@event_dispatcher]]
+            - [setTemplateManager, [@xidea_base.template_manager]]
+    xidea_user.controller.create:
+        class: %xidea_user.controller.create.class%
+        arguments:
+            - @xidea_user.user.configuration
+            - @xidea_user.user.director
+            - @xidea_user.user.manager
+            - @xidea_user.user.form.handler
+        calls:
+            - [setEventDispatcher, [@event_dispatcher]]
+            - [setRouter, [@router]]
+            - [setTemplateManager, [@xidea_base.template_manager]]
+    #forms
+    xidea_user.user.form.type:
+        class: %xidea_user.user.form.type.class%
+        arguments:
+            - %xidea_user.user.class%
+        tags:
+            - { name: form.type, alias: "xidea_user" }
+    xidea_user.user.form.factory.default:
+        class: %xidea_user.user.form.factory.default.class%
+        arguments:
+            - @form.factory
+            - %xidea_user.user.form.name%
+            - %xidea_user.user.form.type%
+            - %xidea_user.user.form.validation_groups%
+    xidea_user.user.form.handler.default:
+        class: %xidea_user.user.form.handler.default.class%
+        arguments:
+            - @xidea_user.user.form.factory
+            - @event_dispatcher
+    #listeners
+    xidea_user.userlistener.user_mappings:
+        class: Xidea\Bundle\UserBundle\EventListener\UserMappingsSubscriber
+        arguments:
+            - "@service_container"
+        tags:
+            - { name: doctrine.event_subscriber, connection: default }

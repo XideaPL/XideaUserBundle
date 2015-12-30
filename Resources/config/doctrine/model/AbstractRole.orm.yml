@@ -1,4 +1,4 @@
-Xidea\User\AbstractRole:
+Xidea\Bundle\UserBundle\Model\AbstractRole:
     type: mappedSuperclass
     id:
         id:
@@ -8,3 +8,6 @@ Xidea\User\AbstractRole:
         name:
             type: string
             length: 255
+        role:
+            type: string
+            length: 128
