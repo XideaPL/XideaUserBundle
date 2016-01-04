@@ -11,7 +11,7 @@ namespace Xidea\Bundle\UserBundle\Controller\User;
 
 use Symfony\Component\HttpFoundation\Request;
 use Xidea\User\LoaderInterface;
-use Xidea\Bundle\BaseBundle\ConfigurationInterface,
+use Xidea\Base\ConfigurationInterface,
     Xidea\Bundle\BaseBundle\Controller\AbstractController;
 
 /**

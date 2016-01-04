@@ -25,9 +25,7 @@
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "dev-master",
-        "doctrine/data-fixtures": "dev-master",
-        "doctrine/doctrine-migrations-bundle": "dev-master",
-        "doctrine/migrations": "dev-master"
+        "doctrine/doctrine-migrations-bundle": "dev-master"
     },
     "autoload": {
         "psr-0": { "Xidea\\Bundle\\UserBundle": "" }

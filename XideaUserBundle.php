@@ -22,7 +22,7 @@ class XideaUserBundle extends Bundle
     protected function addMappingsPass(ContainerBuilder $container)
     {
         $mappings = array(
-            sprintf('%s/Resources/config/doctrine/user-model', $this->getPath()) => 'Xidea\User',
+            //sprintf('%s/Resources/config/doctrine/user-model', $this->getPath()) => 'Xidea\User',
             sprintf('%s/Resources/config/doctrine/model', $this->getPath()) => 'Xidea\Bundle\UserBundle\Model'
         );
         
@@ -34,7 +34,7 @@ class XideaUserBundle extends Bundle
                     array(),
                     false,
                     array(
-                        'XideaUser' => 'Xidea\User',
+                        //'XideaUser' => 'Xidea\User',
                         'XideaUserBundle' => 'Xidea\Bundle\UserBundle\Model'
                     )
             ));

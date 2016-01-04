@@ -1,6 +1,6 @@
 parameters:
     #services
-    xidea_user.profile.configuration.default.class: Xidea\Bundle\BaseBundle\Configuration
+    xidea_user.profile.configuration.default.class: Xidea\Base\Configuration\DefaultConfiguration
     xidea_user.profile.factory.default.class: Xidea\Base\Model\Factory\DefaultFactory
     #controllers
     xidea_user.profile_controller.show.class: Xidea\Bundle\UserBundle\Controller\Profile\ShowController

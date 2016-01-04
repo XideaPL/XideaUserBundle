@@ -11,8 +11,8 @@ namespace Xidea\Bundle\UserBundle\Doctrine\ORM\Loader;
 
 use Xidea\User\LoaderInterface;
 use Xidea\Bundle\UserBundle\Doctrine\ORM\Repository\UserRepositoryInterface;
-use Xidea\Bundle\BaseBundle\ConfigurationInterface,
-    Xidea\Bundle\BaseBundle\Pagination\PaginatorInterface;
+use Xidea\Base\ConfigurationInterface,
+    Xidea\Base\Pagination\PaginatorInterface;
 
 
 /**

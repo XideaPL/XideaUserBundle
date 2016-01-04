@@ -3,7 +3,7 @@
 namespace Xidea\Bundle\UserBundle\Controller;
 
 use Xidea\Bundle\BaseBundle\Controller\AbstractController,
-    Xidea\Bundle\BaseBundle\ConfigurationInterface;
+    Xidea\Base\ConfigurationInterface;
 use Symfony\Component\Security\Core\SecurityContext,
     Symfony\Component\HttpFoundation\Request,
     Symfony\Component\HttpFoundation\Response;

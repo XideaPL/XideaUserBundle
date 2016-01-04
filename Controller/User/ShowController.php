@@ -12,7 +12,7 @@ namespace Xidea\Bundle\UserBundle\Controller\User;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Xidea\User\LoaderInterface;
-use Xidea\Bundle\BaseBundle\ConfigurationInterface,
+use Xidea\Base\ConfigurationInterface,
     Xidea\Bundle\BaseBundle\Controller\AbstractController;
 use Xidea\User\UserInterface;
 
