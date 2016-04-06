@@ -3,7 +3,7 @@ parameters:
   
 services:
     xidea_user.role.manager.default:
-        class: %xidea_user.role.manager.default.class%
+        class: '%xidea_user.role.manager.default.class%'
         arguments:
-            - @doctrine.orm.entity_manager
-            - @event_dispatcher
+            - '@doctrine.orm.entity_manager'
+            - '@event_dispatcher'

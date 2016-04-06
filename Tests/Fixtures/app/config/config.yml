@@ -69,13 +69,8 @@ xidea_user:
         factory: xidea_user.user.factory.default
         manager: xidea_user.user.manager.default
         loader: xidea_user.user.loader.default
-        form:
-            user:
-                factory: xidea_user.user.form.factory.default
-                handler: xidea_user.user.form.handler.default
-                type: xidea_user
-                name: user
     role:
+        enabled: true
         class: Xidea\Bundle\UserBundle\Tests\Fixtures\Model\Role
         configuration: xidea_user.role.configuration.default
         factory: xidea_user.role.factory.default

@@ -4,12 +4,12 @@ parameters:
   
 services:
     xidea_user.role.configuration.default:
-        class: %xidea_user.role.configuration.default.class%
+        class: '%xidea_user.role.configuration.default.class%'
         arguments:
-            - %xidea_user.role.code%
+            - '%xidea_user.role.code%'
         tags:
             - { name: xidea_base.configuration }
     xidea_user.role.factory.default:
-        class: %xidea_user.role.factory.default.class%
+        class: '%xidea_user.role.factory.default.class%'
         arguments:
-            - %xidea_user.role.class%
+            - '%xidea_user.role.class%'

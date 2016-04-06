@@ -11,7 +11,9 @@ namespace Xidea\Bundle\UserBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Description of RegistrationType
@@ -20,7 +22,6 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
  */
 class UserType extends AbstractType
 {
-
     protected $class;
 
     /**
@@ -30,7 +31,7 @@ class UserType extends AbstractType
     {
         $this->class = $class;
     }
-
+    
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -40,23 +41,23 @@ class UserType extends AbstractType
 //                ->add('email', 'email', array(
 //                    'label' => 'user_create.form.email'
 //                ))
-                ->add('plainPassword', 'repeated', array(
-                    'type' => 'password',
+                ->add('plainPassword', RepeatedType::class, array(
+                    'type' => PasswordType::class,
                     'first_options' => array('label' => 'user_create.form.password'),
                     'second_options' => array('label' => 'user_create.form.password_confirmation'),
                     'invalid_message' => 'user_create.error.password.mismatch',
                 ))
         ;
     }
-
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    
+    public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class' => $this->class
-        ));
+        ]);
     }
 
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'xidea_user';
     }

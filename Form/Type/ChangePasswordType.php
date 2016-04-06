@@ -11,7 +11,9 @@ namespace Xidea\Bundle\UserBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Description of ChangePasswordType
@@ -20,7 +22,6 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
  */
 class ChangePasswordType extends AbstractType
 {
-
     protected $class;
 
     /**
@@ -30,12 +31,12 @@ class ChangePasswordType extends AbstractType
     {
         $this->class = $class;
     }
-
+    
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-                ->add('plainPassword', 'repeated', array(
-                    'type' => 'password',
+                ->add('plainPassword', RepeatedType::class, array(
+                    'type' => PasswordType::class,
                     'first_options' => array(
                         'label' => 'user.password',
                         'translation_domain' => 'form'
@@ -48,16 +49,16 @@ class ChangePasswordType extends AbstractType
                 ))
         ;
     }
-
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    
+    public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class' => $this->class,
             'intention' => 'change_password',
-        ));
+        ]);
     }
 
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'xidea_user_change_password';
     }

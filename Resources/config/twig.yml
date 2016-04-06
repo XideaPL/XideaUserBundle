@@ -3,8 +3,8 @@ parameters:
 
 services:
   xidea_user.twig.extension.change_password:
-      class: %xidea_user.twig.extension.change_password.class%
+      class: '%xidea_user.twig.extension.change_password.class%'
       arguments:
-        - @service_container
+        - '@service_container'
       tags:
           - { name: twig.extension }

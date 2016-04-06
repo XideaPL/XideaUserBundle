@@ -8,21 +8,21 @@ parameters:
 services:
     #services
     xidea_user.profile.configuration.default:
-        class: %xidea_user.profile.configuration.default.class%
+        class: '%xidea_user.profile.configuration.default.class%'
         arguments:
-            - %xidea_user.profile.code%
+            - '%xidea_user.profile.code%'
         tags:
             - { name: xidea_base.configuration }
     xidea_user.profile.factory.default:
-        class: %xidea_user.profile.factory.default.class%
+        class: '%xidea_user.profile.factory.default.class%'
         arguments:
-            - %xidea_user.profile.class%
+            - '%xidea_user.profile.class%'
     #controllers
     xidea_user.profile_controller.show:
-        class: %xidea_user.profile_controller.show.class%
+        class: '%xidea_user.profile_controller.show.class%'
         arguments:
-            - @xidea_user.profile.configuration
-            - @xidea_user.user.loader
+            - '@xidea_user.profile.configuration'
+            - '@xidea_user.user.loader'
         calls:
-            - [setEventDispatcher, [@event_dispatcher]]
-            - [setTemplateManager, [@xidea_base.template_manager]]
+            - [setEventDispatcher, ['@event_dispatcher']]
+            - [setTemplateManager, ['@xidea_base.template_manager']]

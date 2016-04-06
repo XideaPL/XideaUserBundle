@@ -7,22 +7,25 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
 
-use Xidea\Bundle\BaseBundle\DependencyInjection\AbstractExtension;
+use Xidea\Bundle\BaseBundle\DependencyInjection\Helper\ExtensionHelper;
 
 /**
  * This is the class that loads and manages your bundle configuration
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
  */
-class XideaUserExtension extends AbstractExtension
+class XideaUserExtension extends Extension
 {
     /**
      * {@inheritDoc}
      */
     public function load(array $configs, ContainerBuilder $container)
     {
-        list($config, $loader) = $this->setUp($configs, new Configuration($this->getAlias()), $container);
+        $configuration = new Configuration($this->getAlias());
+        $config = $this->processConfiguration($configuration, $configs);
 
+        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
+        
         $loader->load('user.yml');
         $loader->load('user_orm.yml');
         $loader->load('security.yml');
@@ -32,7 +35,8 @@ class XideaUserExtension extends AbstractExtension
         $this->loadRoleSection($config['role'], $container, $loader);
         $this->loadProfileSection($config['profile'], $container, $loader);
         
-        $this->loadTemplateSection($config, $container, $loader);
+        $helper = new ExtensionHelper($this->getAlias());
+        $helper->loadTemplateSection($config, $this->getDefaultTemplates(), $container, $loader);
     }
     
     protected function loadUserSection(array $config, ContainerBuilder $container, Loader\YamlFileLoader $loader)

@@ -2,33 +2,25 @@
 
 namespace Xidea\Bundle\UserBundle\Controller;
 
-use Xidea\Bundle\BaseBundle\Controller\AbstractController,
-    Xidea\Base\ConfigurationInterface;
-use Symfony\Component\Security\Core\SecurityContext,
-    Symfony\Component\HttpFoundation\Request,
-    Symfony\Component\HttpFoundation\Response;
+use Xidea\Bundle\BaseBundle\Controller\AbstractController;
+use Xidea\Base\ConfigurationInterface;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
 {
     /*
-     * @var string
+     * @var AuthenticationUtils
      */
-    protected $loginTemplate = 'login';
+    protected $authenticationUtils;
     
-    /*
-     * @var string
-     */
-    protected $loginFormTemplate = 'login_form';
-    
-    /**
-     * 
-     * @param ConfigurationInterface $configuration
-     */
-    public function __construct(ConfigurationInterface $configuration)
+    public function __construct(ConfigurationInterface $configuration, AuthenticationUtils $authenticationUtils)
     {
         parent::__construct($configuration);
+        
+        $this->authenticationUtils = $authenticationUtils;
     }
-    
     /**
      * 
      * @param Request $request
@@ -36,21 +28,11 @@ class SecurityController extends AbstractController
      */
     public function loginAction(Request $request)
     {
-        $session = $request->getSession();
-
-        // get the login error if there is one
-        if ($request->attributes->has(SecurityContext::AUTHENTICATION_ERROR)) {
-            $error = $request->attributes->get(
-                SecurityContext::AUTHENTICATION_ERROR
-            );
-        } else {
-            $error = $session->get(SecurityContext::AUTHENTICATION_ERROR);
-            $session->remove(SecurityContext::AUTHENTICATION_ERROR);
-        }
+        $error = $this->authenticationUtils->getLastAuthenticationError();
+        $lastUsername = $this->authenticationUtils->getLastUsername();
 
         return $this->render('login', array(
-                // last username entered by the user
-                'last_username' => $session->get(SecurityContext::LAST_USERNAME),
+                'last_username' => $lastUsername,
                 'error'         => $error,
         ));
     }

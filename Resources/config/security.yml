@@ -3,8 +3,9 @@ parameters:
 
 services:
     xidea_user.controller.security:
-        class: %xidea_user.controller.security.class%
+        class: '%xidea_user.controller.security.class%'
         arguments:
-            - @xidea_user.user.configuration
+            - '@xidea_user.user.configuration'
+            - '@security.authentication_utils'
         calls:
-            - [setTemplateManager, [@xidea_base.template_manager]]
+            - [setTemplateManager, ['@xidea_base.template_manager']]

@@ -5,20 +5,19 @@ parameters:
   
 services:
     xidea_user.user.repository.default:
-        class: %xidea_user.user.repository.default.class%
-        factory_service: doctrine.orm.entity_manager
-        factory_method: getRepository
+        class: '%xidea_user.user.repository.default.class%'
+        factory: ['@doctrine.orm.entity_manager', getRepository]
         arguments:
-            - %xidea_user.user.class%
+            - '%xidea_user.user.class%'
     xidea_user.user.loader.default:
-        class: %xidea_user.user.loader.default.class%
+        class: '%xidea_user.user.loader.default.class%'
         arguments:
-            - @xidea_user.user.repository.default
-            - @xidea_user.user.configuration
-            - @xidea_base.paginator
+            - '@xidea_user.user.repository.default'
+            - '@xidea_user.user.configuration'
+            - '@xidea_base.paginator'
     xidea_user.user.manager.default:
-        class: %xidea_user.user.manager.default.class%
+        class: '%xidea_user.user.manager.default.class%'
         arguments:
-            - @doctrine.orm.entity_manager
-            - @security.encoder_factory
-            - @event_dispatcher
+            - '@doctrine.orm.entity_manager'
+            - '@security.encoder_factory'
+            - '@event_dispatcher'

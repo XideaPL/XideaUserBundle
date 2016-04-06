@@ -1,9 +1,9 @@
 _login:
-    pattern:   /login
+    path:   /login
     defaults:  { _controller: xidea_user.controller.security:loginAction }
     
 _login_check:
-    pattern:   /login_check
+    path:   /login_check
     
 _logout:
-    pattern:   /logout
+    path:   /logout

@@ -12,11 +12,12 @@ namespace Xidea\Bundle\UserBundle\Tests\Form\Type;
 use Xidea\Bundle\UserBundle\Form\Type\UserType,
     Xidea\Bundle\UserBundle\Tests\Fixtures\Model\User;
 
-use Symfony\Component\Form\Test\TypeTestCase,
-    Symfony\Component\Form\Forms,
-    Symfony\Component\Form\FormBuilder,
-    Symfony\Component\Form\Extension\Validator\Type\FormTypeValidatorExtension,
-    Symfony\Component\Validator\ConstraintViolationList;
+use Symfony\Component\Form\Test\TypeTestCase;
+use Symfony\Component\Form\Forms;
+use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Form\Extension\Validator\Type\FormTypeValidatorExtension;
+use Symfony\Component\Validator\ConstraintViolationList;
+use Symfony\Component\Form\PreloadedExtension;
 
 class UserTypeTest extends TypeTestCase
 {
@@ -32,13 +33,8 @@ class UserTypeTest extends TypeTestCase
         
         $object = new User();
 
-        $type = new UserType(get_class($object));
+        $form = $this->factory->create(UserType::class, $object);
 
-        $form = $this->factory->create($type);
-        //$object->fromArray($formData);
-        $form->setData($object);
-
-        // submit the data to the form directly
         $form->submit($formData);
 
         $this->assertTrue($form->isSynchronized());
@@ -78,5 +74,14 @@ class UserTypeTest extends TypeTestCase
 
         $this->dispatcher = $this->getMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
         $this->builder = new FormBuilder(null, null, $this->dispatcher, $this->factory);
+    }
+    
+    protected function getExtensions()
+    {
+        $type = new UserType(User::class);
+
+        return array(
+            new PreloadedExtension(array($type), array()),
+        );
     }
 }

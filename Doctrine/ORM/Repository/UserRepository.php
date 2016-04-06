@@ -16,6 +16,11 @@ use Doctrine\ORM\EntityRepository;
  */
 class UserRepository extends EntityRepository implements UserRepositoryInterface
 {
+    public function __construct($em, \Doctrine\ORM\Mapping\ClassMetadata $class)
+    {
+        parent::__construct($em, $class);
+    }
+    
     public function findQb()
     {
         $qb = $this->createQueryBuilder('u');
